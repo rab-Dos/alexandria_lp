@@ -1,0 +1,60 @@
+---
+/**
+ * components/About.astro
+ * Sección "Nosotros" — misión, visión y el concepto del faro guía.
+ * H2 como título de sección; H3 para cada pilar interno.
+ */
+---
+
+<section
+  id="nosotros"
+  aria-labelledby="about-heading"
+  class="about-section"
+>
+  <div class="container">
+
+    <!-- H2 — Título de sección (jerarquía descendente del H1 del Hero) -->
+    <h2 id="about-heading">
+      Somos el faro que guía tu empresa en el mundo digital
+    </h2>
+
+    <p class="section-subtitle">
+      Alexandria Studio nació de la convicción de que la tecnología, bien aplicada,
+      puede transformar cualquier organización. Nuestro nombre rinde homenaje al
+      Faro de Alejandría: una referencia que orienta, ilumina y señala el camino seguro.
+    </p>
+
+    <!-- Grid de pilares internos: misión / visión / valores -->
+    <div class="about-grid" role="list">
+
+      <article role="listitem" class="about-card">
+        <!-- H3 — Subtítulo dentro de la sección Nosotros -->
+        <h3>Nuestra Misión</h3>
+        <p>
+          Acompañar a empresas y emprendedores en su evolución digital mediante
+          soluciones tecnológicas claras, eficientes y medibles.
+        </p>
+      </article>
+
+      <article role="listitem" class="about-card">
+        <h3>Nuestra Visión</h3>
+        <p>
+          Ser el aliado tecnológico de referencia en México: aquel al que acuden
+          las organizaciones cuando necesitan un guía confiable en la era digital.
+        </p>
+      </article>
+
+      <article role="listitem" class="about-card">
+        <h3>Nuestros Valores</h3>
+        <ul>
+          <li>Transparencia en cada proceso</li>
+          <li>Excelencia técnica sin excusas</li>
+          <li>Compromiso con el resultado de tu negocio</li>
+          <li>Comunicación clara y directa</li>
+        </ul>
+      </article>
+
+    </div>
+
+  </div>
+</section>

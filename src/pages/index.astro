@@ -1,0 +1,62 @@
+---
+/**
+ * pages/index.astro
+ * Página de inicio — única página del sitio (SPA-style landing).
+ *
+ * Jerarquía de headings:
+ *  H1  → Propuesta de valor principal (Hero)          ← único en toda la página
+ *  H2  → Título de cada sección principal (×4)
+ *  H3  → Subtítulos dentro de secciones (tarjetas, misión, visión…)
+ */
+
+import Layout       from '../layouts/Layout.astro';
+import Header       from '../components/Header.astro';
+import Hero         from '../components/Hero.astro';
+import About        from '../components/About.astro';
+import Services     from '../components/Services.astro';
+import Contact      from '../components/Contact.astro';
+import Footer       from '../components/Footer.astro';
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<Layout
+  title="Consultoría Tecnológica Especializada"
+  description="Alexandria Studio es tu guía en el mundo digital. Ofrecemos programación a medida, automatización de procesos y soporte técnico especializado para impulsar tu negocio."
+  canonicalURL={canonicalURL}
+>
+  <!--
+    ┌─────────────────────────────────────────────────────────────┐
+    │  <header> — Barra de navegación global (fija o sticky)      │
+    └─────────────────────────────────────────────────────────────┘
+  -->
+  <Header />
+
+  <!--
+    ┌─────────────────────────────────────────────────────────────┐
+    │  <main> — Contenido principal de la página                  │
+    │  El atributo id="main-content" permite el "skip to content" │
+    │  para lectores de pantalla (accesibilidad WCAG 2.1 AA)      │
+    └─────────────────────────────────────────────────────────────┘
+  -->
+  <main id="main-content">
+    <!-- Sección 1: Hero — contiene el único <h1> de la página -->
+    <Hero />
+
+    <!-- Sección 2: Nosotros -->
+    <About />
+
+    <!-- Sección 3: Servicios -->
+    <Services />
+
+    <!-- Sección 4: Contacto -->
+    <Contact />
+  </main>
+
+  <!--
+    ┌─────────────────────────────────────────────────────────────┐
+    │  <footer> — Pie de página global                            │
+    └─────────────────────────────────────────────────────────────┘
+  -->
+  <Footer />
+</Layout>

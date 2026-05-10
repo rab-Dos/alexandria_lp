@@ -1,0 +1,50 @@
+---
+/**
+ * components/ServiceCard.astro
+ * Tarjeta reutilizable para cada servicio.
+ * Se renderiza dentro de Services.astro.
+ */
+
+interface Props {
+  icon: string;      // ruta SVG o nombre de icono
+  title: string;     // H3 dentro de la tarjeta
+  description: string;
+  features: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  icon,
+  title,
+  description,
+  features,
+  ctaLabel = 'Saber más',
+  ctaHref  = '#contacto',
+} = Astro.props;
+---
+
+<article class="service-card">
+
+  <!-- Icono del servicio (decorativo si el título ya lo describe) -->
+  <div class="service-icon" aria-hidden="true">
+    <img src={icon} alt="" width="48" height="48" loading="lazy" />
+  </div>
+
+  <!-- H3 — Un nivel por debajo del H2 de la sección Servicios -->
+  <h3>{title}</h3>
+
+  <p>{description}</p>
+
+  <!-- Lista de características clave del servicio -->
+  <ul class="service-features">
+    {features.map((feature) => (
+      <li>{feature}</li>
+    ))}
+  </ul>
+
+  <a href={ctaHref} class="btn btn-outline">
+    {ctaLabel}
+  </a>
+
+</article>

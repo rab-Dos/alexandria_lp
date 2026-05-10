@@ -1,0 +1,75 @@
+---
+/**
+ * components/Footer.astro
+ * Pie de página global — copyright, enlaces legales y créditos.
+ */
+
+const currentYear = new Date().getFullYear();
+
+const legalLinks = [
+  { label: 'Aviso de Privacidad', href: '/privacidad' },
+  { label: 'Términos de Uso',     href: '/terminos'   },
+];
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+
+    <div class="footer-layout">
+
+      <!-- Columna 1: Marca y tagline -->
+      <div class="footer-brand">
+        <a href="/" aria-label="Alexandria Studio — Inicio">
+          <img
+            src="/images/logo-white.svg"
+            alt="Alexandria Studio"
+            width="140"
+            height="32"
+            loading="lazy"
+          />
+        </a>
+        <p class="footer-tagline">
+          Iluminando el camino digital de tu empresa.
+        </p>
+      </div>
+
+      <!-- Columna 2: Mapa del sitio rápido -->
+      <nav aria-label="Mapa del sitio">
+        <h3 class="footer-nav-title">Navegación</h3>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Columna 3: Servicios (refuerzo de keywords para SEO interno) -->
+      <nav aria-label="Servicios">
+        <h3 class="footer-nav-title">Servicios</h3>
+        <ul>
+          <li>Programación a Medida</li>
+          <li>Automatización de Procesos</li>
+          <li>Soporte Técnico</li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <!-- Barra inferior: copyright y enlaces legales -->
+    <div class="footer-bottom">
+      <small>
+        &copy; {currentYear} Alexandria Studio. Todos los derechos reservados.
+      </small>
+
+      <nav aria-label="Enlaces legales">
+        <ul class="legal-links">
+          {legalLinks.map(({ label, href }) => (
+            <li><a href={href}>{label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</footer>

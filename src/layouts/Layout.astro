@@ -1,0 +1,130 @@
+---
+/**
+ * Layout.astro
+ * Plantilla raíz. Gestiona todo el <head>: metadatos, SEO, OG, rendimiento.
+ *
+ * Props esperadas desde cada página:
+ *  - title        : Título de la pestaña y OG (obligatorio)
+ *  - description  : Meta description y OG description (obligatorio)
+ *  - canonicalURL : URL canónica de la página (obligatorio)
+ *  - ogImage      : Ruta de la imagen Open Graph (opcional, tiene fallback)
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalURL,
+  ogImage = '/images/og-default.webp', // imagen OG por defecto
+} = Astro.props;
+
+const siteName = 'Alexandria Studio';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- ─── Charset y Viewport ────────────────────────────────────────────── -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ─── Favicon ──────────────────────────────────────────────────────── -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- ─── Metadatos primarios SEO ──────────────────────────────────────── -->
+    <title>{title} | {siteName}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content={siteName} />
+
+    <!-- ─── Canonical URL (evita contenido duplicado) ────────────────────── -->
+    <!--
+      IMPORTANTE: La URL canónica debe ser la versión definitiva de la página
+      (con o sin www, siempre HTTPS). Pásala como prop desde cada page.
+    -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- ─── Open Graph (Facebook, LinkedIn, WhatsApp, etc.) ──────────────── -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:site_name"   content={siteName} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="es_MX" />
+
+    <!-- ─── Twitter Card ─────────────────────────────────────────────────── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+    <!-- <meta name="twitter:site" content="@AlexandriaStudio" /> -->
+
+    <!-- ─── Rendimiento: Preconnect & DNS-Prefetch para CDNs externos ─────── -->
+    <!--
+      preconnect  → abre la conexión TCP/TLS completa con anticipación.
+                    Usar para recursos que se cargarán de forma segura (fuentes, analytics).
+      dns-prefetch → solo resuelve DNS. Más barato; para dominios de baja prioridad.
+
+      REGLA: preconnect para los 2-3 CDNs más críticos; dns-prefetch para el resto.
+    -->
+
+    <!-- Google Fonts (si se decide alojar fuentes ahí) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Carga la hoja de fuentes SOLO cuando se use Google Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" /> -->
+
+    <!-- Bunny Fonts (alternativa a Google Fonts sin envío de datos a EU) -->
+    <!-- <link rel="preconnect" href="https://fonts.bunny.net" /> -->
+
+    <!-- CDN de imágenes / media (ej. Cloudinary, Cloudflare Images) -->
+    <!-- <link rel="preconnect" href="https://res.cloudinary.com" /> -->
+    <!-- <link rel="dns-prefetch" href="https://res.cloudinary.com" /> -->
+
+    <!-- Analytics (solo dns-prefetch; no bloquear el render) -->
+    <!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com" /> -->
+    <!-- <link rel="dns-prefetch" href="https://plausible.io" /> -->
+
+    <!-- ─── Structured Data (JSON-LD) ─────────────────────────────────────── -->
+    <!--
+      Schema.org Organization para que Google conozca la empresa.
+      Ajustar url, logo, contactPoint y sameAs con los datos reales.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Alexandria Studio",
+        "url": "https://alexandriastudio.mx",
+        "logo": "https://alexandriastudio.mx/images/logo.svg",
+        "description": "Consultoría tecnológica: programación a medida, automatización de procesos y soporte técnico especializado.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "availableLanguage": "Spanish"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/alexandria-studio",
+          "https://github.com/alexandria-studio"
+        ]
+      }
+    </script>
+
+    <!-- ─── Slot para metadatos adicionales por página ────────────────────── -->
+    <slot name="head" />
+  </head>
+
+  <body>
+    <!-- Contenido principal inyectado por cada página -->
+    <slot />
+  </body>
+</html>

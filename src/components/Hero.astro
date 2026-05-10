@@ -1,0 +1,74 @@
+---
+/**
+ * components/Hero.astro
+ * Sección hero — contiene el ÚNICO <h1> de la página.
+ *
+ * Criterios SEO del H1:
+ *  - Incluye la keyword primaria del negocio.
+ *  - Es descriptivo, no genérico ("Bienvenido" no sirve).
+ *  - Idealmente ≤ 60 caracteres para no cortarse en SERPs.
+ */
+---
+
+<section
+  id="inicio"
+  aria-labelledby="hero-heading"
+  class="hero-section"
+>
+  <div class="container">
+
+    <div class="hero-content">
+
+      <!-- Eyebrow: etiqueta pequeña sobre el H1, no es heading semántico -->
+      <p class="hero-eyebrow" aria-hidden="true">
+        Consultoría Tecnológica · Ciudad de México
+      </p>
+
+      <!--
+        H1 — Keyword primaria + propuesta de valor.
+        Una sola instancia en toda la página.
+        Ejemplo de keyword: "consultoría tecnológica especializada"
+      -->
+      <h1 id="hero-heading">
+        Tu guía de confianza en la&nbsp;transformación&nbsp;digital
+      </h1>
+
+      <!-- Párrafo de apoyo que amplía el H1 sin duplicar keywords -->
+      <p class="hero-description">
+        En Alexandria Studio iluminamos el camino de tu empresa con soluciones
+        de <strong>programación a medida</strong>, <strong>automatización de procesos</strong>
+        y <strong>soporte técnico especializado</strong>. Como el Faro de Alejandría,
+        somos el punto de referencia que orienta tu negocio hacia el futuro.
+      </p>
+
+      <!-- CTA primario — acción de mayor importancia en la página -->
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary">
+          Agenda una consulta gratuita
+        </a>
+        <a href="#servicios" class="btn btn-secondary">
+          Conoce nuestros servicios
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Imagen o ilustración del hero -->
+    <div class="hero-visual" aria-hidden="true">
+      <img
+        src="/images/hero-lighthouse.webp"
+        alt=""
+        width="600"
+        height="500"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <!--
+        alt="" vacío porque es decorativa; el texto del H1 ya describe la intención.
+        Si la imagen añade contexto único, escribir alt descriptivo.
+      -->
+    </div>
+
+  </div>
+</section>

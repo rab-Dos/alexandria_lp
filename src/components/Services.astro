@@ -1,0 +1,83 @@
+---
+/**
+ * components/Services.astro
+ * Sección de servicios — los tres pilares de Alexandria Studio.
+ * Usa ServiceCard.astro como sub-componente reutilizable.
+ */
+
+import ServiceCard from './ServiceCard.astro';
+
+const services = [
+  {
+    icon: '/icons/code.svg',
+    title: 'Programación a Medida',
+    description:
+      'Desarrollamos aplicaciones web y de escritorio diseñadas exactamente para tus procesos, sin moldes genéricos ni licencias innecesarias.',
+    features: [
+      'Aplicaciones web full-stack',
+      'APIs REST y GraphQL',
+      'Integraciones con sistemas existentes',
+      'Arquitectura escalable desde el día 1',
+    ],
+  },
+  {
+    icon: '/icons/automation.svg',
+    title: 'Automatización de Procesos',
+    description:
+      'Eliminamos las tareas repetitivas que consumen el tiempo de tu equipo y las convertimos en flujos automáticos confiables.',
+    features: [
+      'RPA (automatización robótica de procesos)',
+      'Flujos con n8n, Make o Zapier',
+      'Scrapers y bots de recolección de datos',
+      'Reportes automáticos y alertas',
+    ],
+  },
+  {
+    icon: '/icons/support.svg',
+    title: 'Soporte Técnico Especializado',
+    description:
+      'Respaldo técnico continuo para mantener tus sistemas estables, seguros y optimizados, con tiempos de respuesta definidos.',
+    features: [
+      'Mantenimiento preventivo y correctivo',
+      'Auditorías de seguridad básicas',
+      'Gestión de infraestructura en la nube',
+      'Documentación técnica actualizada',
+    ],
+  },
+];
+---
+
+<section
+  id="servicios"
+  aria-labelledby="services-heading"
+  class="services-section"
+>
+  <div class="container">
+
+    <!-- H2 — Título de sección -->
+    <h2 id="services-heading">
+      Servicios diseñados para impulsar tu negocio
+    </h2>
+
+    <p class="section-subtitle">
+      Tres pilares de consultoría tecnológica que se complementan para
+      llevar a tu empresa al siguiente nivel.
+    </p>
+
+    <!--
+      Grid de tarjetas de servicio.
+      role="list" restaura la semántica de lista que algunos resets de CSS eliminan.
+    -->
+    <div class="services-grid" role="list">
+      {services.map((service) => (
+        <ServiceCard
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+          features={service.features}
+        />
+      ))}
+    </div>
+
+  </div>
+</section>
