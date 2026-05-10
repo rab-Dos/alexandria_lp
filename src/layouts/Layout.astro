@@ -35,7 +35,14 @@ const siteName = 'Alexandria Studio';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- ─── Favicon ──────────────────────────────────────────────────────── -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- SVG: navegadores modernos (Chrome 80+, Firefox, Edge) -->
+    <link rel="icon" type="image/svg+xml" href="/Alexandria.svg" />
+    <!-- PNG: fallback para Safari y navegadores que no soportan SVG -->
+    <link rel="icon" type="image/png" href="/Alexandria.png" />
+    <!-- ICO: fallback universal para navegadores antiguos -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Apple Touch Icon (pantalla de inicio en iOS/macOS) -->
+    <link rel="apple-touch-icon" href="/Alexandria.png" />
 
     <!-- ─── Metadatos primarios SEO ──────────────────────────────────────── -->
     <title>{title} | {siteName}</title>
