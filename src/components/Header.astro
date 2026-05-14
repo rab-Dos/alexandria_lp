@@ -1,7 +1,7 @@
 ---
 /**
  * components/Header.astro
- * Barra de navegación principal.
+ * Barra de navegación principal — diseño "squircle flotante".
  * Semántica: <header> + <nav> con aria-label.
  */
 
@@ -13,28 +13,23 @@ const navLinks = [
 ---
 
 <header class="site-header" role="banner">
-  <div class="container">
 
-    <!-- Logo: enlace a inicio, texto alternativo para screen readers -->
-    <a href="/" aria-label="Alexandria Studio — Ir al inicio" class="logo">
-      <!--
-        Usar <img> con SVG del logotipo o texto con icono.
-        El texto "Alexandria Studio" actúa como fallback accesible.
-      -->
+  <!-- ── Barra principal ──────────────────────────────────── -->
+  <div class="nav-pill">
+
+    <a href="#" aria-label="Alexandria Studio — Ir al inicio" class="logo">
       <img
-        src="/images/logo.svg"
-        alt="Alexandria Studio"
-        width="180"
-        height="40"
+        src="/Alexandria_alternativo.svg"
+        alt=""
+        width="26"
+        height="26"
         loading="eager"
         fetchpriority="high"
+        aria-hidden="true"
       />
+      <span>Alexandria Studio</span>
     </a>
 
-    <!--
-      <nav> con aria-label para diferenciarla si hubiera más navs en la página.
-      Los href apuntan a anclas de las secciones (SPA-style scroll).
-    -->
     <nav aria-label="Navegación principal">
       <ul role="list">
         {navLinks.map(({ label, href }) => (
@@ -43,26 +38,80 @@ const navLinks = [
           </li>
         ))}
       </ul>
-
-      <!-- CTA secundario en la nav -->
-      <a href="#contacto" class="nav-cta">
-        Habla con nosotros
-      </a>
     </nav>
 
-    <!-- Botón hamburguesa para móvil (JS de toggle se añade aparte) -->
+    <div class="nav-actions">
+      <a href="#contacto" class="nav-cta">Habla con nosotros</a>
+    </div>
+
     <button
       type="button"
+      id="mobile-menu-btn"
       class="mobile-menu-toggle"
       aria-label="Abrir menú de navegación"
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <!-- Icono hamburguesa (SVG inline o heroicons) -->
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </button>
 
   </div>
+
+  <!-- ── Menú desplegable móvil ────────────────────────────── -->
+  <div
+    id="mobile-menu"
+    class="mobile-menu"
+    aria-hidden="true"
+    aria-label="Menú de navegación móvil"
+  >
+    <nav>
+      <ul>
+        {navLinks.map(({ label, href }) => (
+          <li>
+            <a href={href} class="mobile-menu-link">{label}</a>
+          </li>
+        ))}
+      </ul>
+      <a href="#contacto" class="btn btn-primary mobile-menu-cta">
+        Habla con nosotros
+      </a>
+    </nav>
+  </div>
+
 </header>
+
+<script>
+  const btn  = document.getElementById('mobile-menu-btn') as HTMLButtonElement | null;
+  const menu = document.getElementById('mobile-menu')     as HTMLElement | null;
+
+  function closeMenu() {
+    if (!menu || !menu.classList.contains('is-open')) return;
+    menu.classList.add('is-closing');
+    menu.classList.remove('is-open');
+    btn?.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    btn?.classList.remove('is-active');
+    // Quitar is-closing una vez termina la animación de salida
+    menu.addEventListener('animationend', () => {
+      menu!.classList.remove('is-closing');
+    }, { once: true });
+  }
+
+  btn?.addEventListener('click', () => {
+    if (menu!.classList.contains('is-open') || menu!.classList.contains('is-closing')) {
+      closeMenu();
+    } else {
+      menu!.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      menu!.setAttribute('aria-hidden', 'false');
+      btn.classList.add('is-active');
+    }
+  });
+
+  // Cerrar el menú con fadeout al hacer clic en un enlace
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => closeMenu());
+  });
+</script>

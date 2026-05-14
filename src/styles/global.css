@@ -29,6 +29,13 @@
   --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 }
 
+/* ── Propiedad tipada para animar el ángulo del borde CTA ── */
+@property --nav-cta-a {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 /* ═══════════════════════════════════════════════════════════
    BASE RESETS
    ═══════════════════════════════════════════════════════════ */
@@ -202,73 +209,204 @@
   }
 
   /* ──────────────────────────────────────────────────────
-     HEADER
+     HEADER — squircle flotante
      ────────────────────────────────────────────────────── */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background-color: color-mix(in srgb, var(--color-void-black) 80%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-graphite-500);
+    display: flex;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
+    background: transparent;
+    pointer-events: none;
   }
 
-  .site-header .container {
+  /* ── Squircle: radio intermedio entre rectángulo y píldora ── */
+  .nav-pill {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 4rem;
+    width: 100%;
+    max-width: 960px;
+    height: 3rem;
+    padding-inline: 0.75rem;
+    /* Glassmorphism: fondo semi-transparente oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background-color: color-mix(in srgb, var(--color-graphite-700) 55%, transparent);
+    border-radius: 16px;
+    /* Desenfoque de lo que hay detrás */
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    pointer-events: auto;
+    box-shadow:
+      rgba(0,0,0,0.45) 0px 4px 20px,
+      rgba(255,255,255,0.05) 0px 1px 0px inset;
+    gap: 0.5rem;
+  }
+
+  /* ── Logo: resplandor blanco en hover ───────────────────── */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    transition: filter 0.25s ease;
+  }
+
+  .logo:hover {
+    filter:
+      drop-shadow(0 0 6px rgba(255, 255, 255, 0.75))
+      drop-shadow(0 0 2px rgba(255, 255, 255, 0.95));
   }
 
   .logo img {
-    height: 36px;
-    width: auto;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 
-  .site-header nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .site-header nav ul {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .site-header nav a {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--color-slate-200);
-    transition: color 0.2s;
-    letter-spacing: 0.02em;
-  }
-
-  .site-header nav a:hover {
+  .logo span {
+    font-size: 0.9375rem;
+    font-weight: 600;
     color: var(--color-snow);
-  }
-
-  .nav-cta {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1.25rem;
-    background-color: var(--color-graphite-600);
-    border: 1px solid var(--color-graphite-500);
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-ash-50) !important;
-    transition: background-color 0.2s, border-color 0.2s;
+    letter-spacing: -0.01em;
     white-space: nowrap;
   }
 
-  .nav-cta:hover {
-    background-color: var(--color-azure-core);
-    border-color: var(--color-azure-core);
-    color: var(--color-snow) !important;
+  /* ── Nav central ────────────────────────────────────────── */
+  .nav-pill nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
   }
 
+  .nav-pill nav ul {
+    display: flex;
+    gap: 0.125rem;
+  }
+
+  /* Links con subrayado animado desde el centro */
+  .nav-pill nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-slate-200);
+    border-radius: 0;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-pill nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 1.5px;
+    background: var(--color-snow);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-pill nav a:hover {
+    color: var(--color-snow);
+  }
+
+  .nav-pill nav a:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* ── Acciones a la derecha ──────────────────────────────── */
+  .nav-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* ── CTA con borde animado azul en hover ────────────────── */
+  @keyframes nav-cta-spin {
+    to { --nav-cta-a: 360deg; }
+  }
+
+  .nav-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4375rem 1rem;
+    background-color: var(--color-ash-50);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-void-black) !important;
+    white-space: nowrap;
+    box-shadow:
+      rgba(0,0,0,0.4) 0px 1.5px 0.5px 2.5px,
+      rgb(0,0,0) 0px 0px 0.5px 1px;
+  }
+
+  .nav-cta:hover {
+    color: var(--color-void-black) !important;
+  }
+
+  /*
+   * Anillo giratorio: se usa mask-composite: exclude para que el
+   * interior del ::before sea transparente. Solo el anillo de 3px
+   * (definido por padding: 3px) es visible. El texto nunca queda
+   * cubierto sin importar el z-index.
+   *
+   * Cómo funciona la máscara:
+   *   capa 1 (content-box) + capa 2 (border-box) se solapan en el
+   *   interior → exclude/xor elimina la intersección → solo queda
+   *   visible el anillo exterior de 3px.
+   */
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 9999px;
+    padding: 3px; /* grosor del anillo visible */
+    background: conic-gradient(
+      from var(--nav-cta-a),
+      transparent 0%,
+      transparent 60%,
+      var(--color-azure-glow) 74%,
+      var(--color-azure-core) 82%,
+      var(--color-azure-core) 90%,
+      var(--color-azure-glow) 98%,
+      transparent 100%
+    );
+    /* Máscara: oculta el interior, muestra solo el anillo */
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: nav-cta-spin 2.5s linear infinite;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+
+  .nav-cta:hover::before {
+    opacity: 1;
+    transition: opacity 0.15s ease-in;
+  }
+
+  /* ── Hamburguesa ────────────────────────────────────────── */
   .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -277,15 +415,113 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
+    margin-left: auto; /* empuja el botón al extremo derecho */
   }
 
   .mobile-menu-toggle span {
     display: block;
-    width: 22px;
+    width: 20px;
     height: 2px;
     background-color: var(--color-ash-50);
     border-radius: 2px;
-    transition: all 0.2s;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* Icono × al abrir */
+  .mobile-menu-toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .mobile-menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .mobile-menu-toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Menú móvil desplegable ─────────────────────────────── */
+  /* Animaciones de entrada/salida del menú */
+  @keyframes mobile-menu-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes mobile-menu-exit {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+
+  .mobile-menu {
+    display: none;
+    /* Posicionamiento absolute: no empuja el contenido */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0.5rem 0.75rem;
+    max-width: calc(100% - 1.5rem);
+    background-color: var(--color-graphite-700);
+    border: 1px solid var(--color-graphite-500);
+    border-radius: 12px;
+    padding: 0.5rem;
+    pointer-events: auto;
+    box-shadow:
+      rgba(0,0,0,0.5) 0px 4px 16px,
+      rgba(255,255,255,0.04) 0px 1px 0px inset;
+    z-index: 50; /* Por encima del contenido */
+    animation: mobile-menu-exit 0.2s ease-in forwards;
+  }
+
+  .mobile-menu.is-open {
+    display: block;
+    animation: mobile-menu-enter 0.3s ease-out forwards;
+  }
+
+  /* Reproduces la animación de salida antes de ocultar el menú */
+  .mobile-menu.is-closing {
+    display: block;
+    animation: mobile-menu-exit 0.22s ease-in forwards;
+  }
+
+  .mobile-menu nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .mobile-menu-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-slate-200);
+    border-radius: 8px;
+    transition: color 0.2s, background-color 0.2s;
+  }
+
+  .mobile-menu-link:hover {
+    color: var(--color-snow);
+    background-color: var(--color-graphite-600);
+  }
+
+  .mobile-menu-cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+    border-radius: 8px;
   }
 
   /* ──────────────────────────────────────────────────────
@@ -300,6 +536,18 @@
     background-color: var(--color-void-black);
   }
 
+  /* Canvas de animación: capa base, detrás de todo el contenido */
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Nebula overlay: encima del canvas, debajo del contenido */
   .hero-section::before {
     content: '';
     position: absolute;
@@ -309,11 +557,14 @@
       rgba(4, 63, 150, 0.7),
       rgba(6, 18, 37, 0.25)
     );
+    z-index: 1;
     pointer-events: none;
   }
 
+  /* El contenido del hero siempre encima del canvas y el overlay */
   .hero-section .container {
     position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -826,7 +1077,22 @@
       grid-template-columns: 1fr;
     }
 
-    .site-header nav {
+    .site-header {
+      padding: 0.625rem 1rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav-pill {
+      border-radius: 12px;
+    }
+
+    .nav-pill nav {
+      display: none;
+    }
+
+    .nav-actions {
       display: none;
     }
 
