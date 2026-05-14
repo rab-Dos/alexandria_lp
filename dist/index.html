@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="es"> <head><!-- ─── Charset y Viewport ────────────────────────────────────────────── --><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- ─── Favicon ──────────────────────────────────────────────────────── --><!-- SVG: navegadores modernos (Chrome 80+, Firefox, Edge) --><link rel="icon" type="image/svg+xml" href="/Alexandria.svg"><!-- PNG: fallback para Safari y navegadores que no soportan SVG --><link rel="icon" type="image/png" href="/Alexandria.png"><!-- ICO: fallback universal para navegadores antiguos --><link rel="icon" type="image/x-icon" href="/favicon.ico"><!-- Apple Touch Icon (pantalla de inicio en iOS/macOS) --><link rel="apple-touch-icon" href="/Alexandria.png"><!-- ─── Metadatos primarios SEO ──────────────────────────────────────── --><title>Consultoría en Sistemas, Redes y Continuidad Digital | Alexandria Studio</title><meta name="description" content="alexandriaStudio.cloud es tu departamento de TI externo. Desde 2017 ofrecemos Mesa de Ayuda, Infraestructura de Redes, Ciberseguridad, Mantenimiento Preventivo y soporte ASPEL/POS en Ciudad de México."><meta name="robots" content="index, follow"><meta name="author" content="Alexandria Studio"><!-- ─── Canonical URL (evita contenido duplicado) ────────────────────── --><!--
+      IMPORTANTE: La URL canónica debe ser la versión definitiva de la página
+      (con o sin www, siempre HTTPS). Pásala como prop desde cada page.
+    --><link rel="canonical" href="https://alexandriastudio.mx/"><!-- ─── Open Graph (Facebook, LinkedIn, WhatsApp, etc.) ──────────────── --><meta property="og:type" content="website"><meta property="og:url" content="https://alexandriastudio.mx/"><meta property="og:site_name" content="Alexandria Studio"><meta property="og:title" content="Consultoría en Sistemas, Redes y Continuidad Digital"><meta property="og:description" content="alexandriaStudio.cloud es tu departamento de TI externo. Desde 2017 ofrecemos Mesa de Ayuda, Infraestructura de Redes, Ciberseguridad, Mantenimiento Preventivo y soporte ASPEL/POS en Ciudad de México."><meta property="og:image" content="/images/og-default.webp"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:locale" content="es_MX"><!-- ─── Twitter Card ─────────────────────────────────────────────────── --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Consultoría en Sistemas, Redes y Continuidad Digital"><meta name="twitter:description" content="alexandriaStudio.cloud es tu departamento de TI externo. Desde 2017 ofrecemos Mesa de Ayuda, Infraestructura de Redes, Ciberseguridad, Mantenimiento Preventivo y soporte ASPEL/POS en Ciudad de México."><meta name="twitter:image" content="/images/og-default.webp"><!-- <meta name="twitter:site" content="@AlexandriaStudio" /> --><!-- ─── Rendimiento: Preconnect & DNS-Prefetch para CDNs externos ─────── --><!--
+      preconnect  → abre la conexión TCP/TLS completa con anticipación.
+                    Usar para recursos que se cargarán de forma segura (fuentes, analytics).
+      dns-prefetch → solo resuelve DNS. Más barato; para dominios de baja prioridad.
+
+      REGLA: preconnect para los 2-3 CDNs más críticos; dns-prefetch para el resto.
+    --><!-- Google Fonts (Inter y Geist Mono) --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"><!-- Bunny Fonts (alternativa a Google Fonts sin envío de datos a EU) --><!-- <link rel="preconnect" href="https://fonts.bunny.net" /> --><!-- CDN de imágenes / media (ej. Cloudinary, Cloudflare Images) --><!-- <link rel="preconnect" href="https://res.cloudinary.com" /> --><!-- <link rel="dns-prefetch" href="https://res.cloudinary.com" /> --><!-- Analytics (solo dns-prefetch; no bloquear el render) --><!-- <link rel="dns-prefetch" href="https://www.googletagmanager.com" /> --><!-- <link rel="dns-prefetch" href="https://plausible.io" /> --><!-- ─── Structured Data (JSON-LD) ─────────────────────────────────────── --><!--
+      Schema.org Organization para que Google conozca la empresa.
+      Ajustar url, logo, contactPoint y sameAs con los datos reales.
+    --><script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Alexandria Studio",
+        "url": "https://alexandriastudio.mx",
+        "logo": "https://alexandriastudio.mx/images/logo.svg",
+        "description": "Consultoría tecnológica: programación a medida, automatización de procesos y soporte técnico especializado.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "availableLanguage": "Spanish"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/alexandria-studio",
+          "https://github.com/alexandria-studio"
+        ]
+      }
+    </script><!-- ─── Slot para metadatos adicionales por página ────────────────────── --><link rel="stylesheet" href="/_astro/index.CtrFWI5o.css"></head> <body> <!-- Contenido principal inyectado por cada página -->   <header class="site-header" role="banner"> <div class="container"> <!-- Logo: enlace a inicio, texto alternativo para screen readers --> <a href="/" aria-label="Alexandria Studio — Ir al inicio" class="logo"> <!--
+        Usar <img> con SVG del logotipo o texto con icono.
+        El texto "Alexandria Studio" actúa como fallback accesible.
+      --> <img src="/images/logo.svg" alt="Alexandria Studio" width="180" height="40" loading="eager" fetchpriority="high"> </a> <!--
+      <nav> con aria-label para diferenciarla si hubiera más navs en la página.
+      Los href apuntan a anclas de las secciones (SPA-style scroll).
+    --> <nav aria-label="Navegación principal"> <ul role="list"> <li> <a href="#nosotros">Nosotros</a> </li><li> <a href="#servicios">Servicios</a> </li><li> <a href="#contacto">Contacto</a> </li> </ul> <!-- CTA secundario en la nav --> <a href="#contacto" class="nav-cta">
+Habla con nosotros
+</a> </nav> <!-- Botón hamburguesa para móvil (JS de toggle se añade aparte) --> <button type="button" class="mobile-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu"> <!-- Icono hamburguesa (SVG inline o heroicons) --> <span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span> </button> </div> </header>  <main id="main-content"> <!-- Sección 1: Hero — contiene el único <h1> de la página --> <section id="inicio" aria-labelledby="hero-heading" class="hero-section"> <div class="container"> <div class="hero-content"> <!-- Eyebrow: etiqueta pequeña sobre el H1, no es heading semántico --> <p class="hero-eyebrow" aria-hidden="true">
+Consultoría en Sistemas, Redes y Continuidad Digital · Ciudad de México
+</p> <!--
+        H1 — Keyword primaria + propuesta de valor.
+        Una sola instancia en toda la página.
+      --> <h1 id="hero-heading">
+Tu punto de referencia&nbsp;en&nbsp;sistemas
+</h1> <!-- Párrafo de apoyo que amplía el H1 sin duplicar keywords --> <p class="hero-description">
+Somos tu departamento de TI externo. Desde 2017 hemos evolucionado
+        junto con la tecnología, cubriendo <strong>Infraestructura</strong>,
+<strong>Seguridad</strong> y <strong>Nube</strong> para que tú te enfoques
+        en tu negocio mientras nosotros aseguramos tu operación.
+</p> <!-- CTA primario — acción de mayor importancia en la página --> <div class="hero-actions"> <a href="#contacto" class="btn btn-primary">
+Agenda una consulta gratuita
+</a> <a href="#servicios" class="btn btn-secondary">
+Conoce nuestros servicios
+</a> </div> </div> <!-- Imagen o ilustración del hero --> <div class="hero-visual" aria-hidden="true"> <img src="/images/hero-lighthouse.webp" alt="" width="600" height="500" loading="eager" fetchpriority="high" decoding="async"> <!--
+        alt="" vacío porque es decorativa; el texto del H1 ya describe la intención.
+        Si la imagen añade contexto único, escribir alt descriptivo.
+      --> </div> </div> </section> <!-- Sección 2: Nosotros --> <section id="nosotros" aria-labelledby="about-heading" class="about-section"> <div class="container"> <!-- H2 — Título de sección (jerarquía descendente del H1 del Hero) --> <h2 id="about-heading">
+Somos el faro que guía tu empresa en el mundo digital
+</h2> <p class="section-subtitle">
+En <strong>alexandriaStudio.cloud</strong> hemos evolucionado junto con la
+      tecnología desde nuestro inicio en 2017. Hemos pasado de un enfoque
+      tradicional de soporte a una visión integral que abarca
+<strong>Infraestructura, Seguridad y Nube</strong>.
+</p> <p class="section-body">
+Entendemos que hoy en día, una caída de internet o un virus no es solo una
+      molestia técnica: es dinero perdido. Por eso, nos convertimos en tu
+      departamento de TI externo, garantizando que tú te enfoques en tu negocio
+      mientras nosotros aseguramos tu operación.
+</p> <!-- Grid de pilares internos: misión / visión / valores --> <div class="about-grid" role="list"> <article role="listitem" class="about-card"> <!-- H3 — Subtítulo dentro de la sección Nosotros --> <h3>Nuestra Misión</h3> <p>
+Convertirnos en el departamento de TI externo de tu empresa:
+          garantizando continuidad operativa, seguridad y crecimiento tecnológico
+          para que tú te enfoques en tu negocio.
+</p> </article> <article role="listitem" class="about-card"> <h3>Nuestra Visión</h3> <p>
+Ser el aliado tecnológico de referencia en México: el punto de confianza
+          al que acuden las organizaciones cuando necesitan infraestructura sólida,
+          redes estables y continuidad digital garantizada.
+</p> </article> <article role="listitem" class="about-card"> <h3>Nuestros Valores</h3> <ul> <li>Transparencia en cada proceso</li> <li>Excelencia técnica sin excusas</li> <li>Compromiso con el resultado de tu negocio</li> <li>Comunicación clara y directa</li> </ul> </article> </div> </div> </section> <!-- Sección 3: Servicios --> <section id="servicios" aria-labelledby="services-heading" class="services-section"> <div class="container"> <!-- H2 — Título de sección --> <h2 id="services-heading">
+Servicios diseñados para impulsar tu negocio
+</h2> <p class="section-subtitle">
+Tres pilares de consultoría tecnológica que se complementan para
+      llevar a tu empresa al siguiente nivel.
+</p> <!--
+      Grid de tarjetas de servicio.
+      role="list" restaura la semántica de lista que algunos resets de CSS eliminan.
+    --> <div class="services-grid" role="list"> <article class="service-card"> <!-- Icono del servicio (decorativo si el título ya lo describe) --> <div class="service-icon" aria-hidden="true"> <img src="/icons/helpdesk.svg" alt="" width="48" height="48" loading="lazy"> </div> <!-- H3 — Un nivel por debajo del H2 de la sección Servicios --> <h3>Mesa de Ayuda</h3> <p>Lo básico, bien hecho. Soporte integral para mantener a tu equipo productivo: desde el sistema operativo hasta la impresora.</p> <!-- Lista de características clave del servicio --> <ul class="service-features"> <li>Mantenimiento preventivo y correctivo</li><li>Soporte Windows y macOS (pantallas azules, lentitud, actualización)</li><li>Microsoft Office, Outlook y lectores PDF</li><li>Gestión de cuentas, Directorio Activo y correos corporativos</li><li>Impresoras, escáneres y webcams</li> </ul> <a href="#contacto" class="btn btn-outline"> Saber más </a> </article><article class="service-card"> <!-- Icono del servicio (decorativo si el título ya lo describe) --> <div class="service-icon" aria-hidden="true"> <img src="/icons/network.svg" alt="" width="48" height="48" loading="lazy"> </div> <!-- H3 — Un nivel por debajo del H2 de la sección Servicios --> <h3>Infraestructura de Redes (LAN &amp; Wireless)</h3> <p>Diagnóstico y optimización de tu red para una conexión estable y segura en toda la oficina.</p> <!-- Lista de características clave del servicio --> <ul class="service-features"> <li>Wi-Fi corporativo: eliminación de zonas muertas</li><li>Configuración de redes de invitados y principales</li><li>Cableado y switching para máxima velocidad</li> </ul> <a href="#contacto" class="btn btn-outline"> Saber más </a> </article><article class="service-card"> <!-- Icono del servicio (decorativo si el título ya lo describe) --> <div class="service-icon" aria-hidden="true"> <img src="/icons/security.svg" alt="" width="48" height="48" loading="lazy"> </div> <!-- H3 — Un nivel por debajo del H2 de la sección Servicios --> <h3>Ciberseguridad y Protección</h3> <p>Blindamos tus equipos y tu información crítica ante ataques digitales y pérdida de datos.</p> <!-- Lista de características clave del servicio --> <ul class="service-features"> <li>Blindaje de equipos contra ataques digitales</li><li>Limpieza lógica y optimización de rendimiento</li><li>Políticas de respaldo (Backup) para información crítica</li> </ul> <a href="#contacto" class="btn btn-outline"> Saber más </a> </article><article class="service-card"> <!-- Icono del servicio (decorativo si el título ya lo describe) --> <div class="service-icon" aria-hidden="true"> <img src="/icons/maintenance.svg" alt="" width="48" height="48" loading="lazy"> </div> <!-- H3 — Un nivel por debajo del H2 de la sección Servicios --> <h3>Mantenimiento Preventivo</h3> <p>Prolonga la vida útil de tus activos con mantenimiento físico y actualizaciones programadas fuera de horario operativo.</p> <!-- Lista de características clave del servicio --> <ul class="service-features"> <li>Limpieza física de hardware</li><li>Actualizaciones programadas fuera de horario operativo</li> </ul> <a href="#contacto" class="btn btn-outline"> Saber más </a> </article><article class="service-card"> <!-- Icono del servicio (decorativo si el título ya lo describe) --> <div class="service-icon" aria-hidden="true"> <img src="/icons/pos.svg" alt="" width="48" height="48" loading="lazy"> </div> <!-- H3 — Un nivel por debajo del H2 de la sección Servicios --> <h3>Sistemas Administrativos y Puntos de Venta</h3> <p>Soporte especializado en software administrativo y configuración de equipos de punto de venta.</p> <!-- Lista de características clave del servicio --> <ul class="service-features"> <li>ASPEL SAE, COI y NOI (instalación, red y respaldos)</li><li>Impresoras térmicas y lectores de código de barras</li><li>Cajones de dinero y periféricos POS</li> </ul> <a href="#contacto" class="btn btn-outline"> Saber más </a> </article> </div> </div> </section> <!-- Sección 4: Contacto --> <section id="contacto" aria-labelledby="contact-heading" class="contact-section"> <div class="container"> <!-- H2 — Título de sección --> <h2 id="contact-heading">
+¿Listo para empezar? Cuéntanos tu proyecto
+</h2> <p class="section-subtitle">
+Responderemos en menos de 24 horas hábiles. La primera consulta es gratuita.
+</p> <div class="contact-layout"> <!-- ── Formulario de captura de leads ──────────────────────────── --> <div class="contact-form-wrapper"> <h3>Envíanos un mensaje</h3> <!--
+          method="POST" y action apuntarán al endpoint API de Astro
+          o a un servicio externo de formularios.
+        --> <form method="POST" action="/api/contact" novalidate aria-label="Formulario de contacto" class="contact-form"> <div class="form-group"> <label for="name">Nombre completo <span aria-hidden="true">*</span></label> <input type="text" id="name" name="name" autocomplete="name" aria-required="true" placeholder="Ej. María García"> </div> <div class="form-group"> <label for="email">Correo electrónico <span aria-hidden="true">*</span></label> <input type="email" id="email" name="email" autocomplete="email" aria-required="true" placeholder="correo@empresa.com"> </div> <div class="form-group"> <label for="company">Empresa (opcional)</label> <input type="text" id="company" name="company" autocomplete="organization" placeholder="Nombre de tu empresa"> </div> <div class="form-group"> <label for="service">Servicio de interés</label> <select id="service" name="service"> <option value="">Selecciona una opción</option> <option value="helpdesk">Mesa de Ayuda</option> <option value="network">Infraestructura de Redes (LAN &amp; Wireless)</option> <option value="security">Ciberseguridad y Protección</option> <option value="maintenance">Mantenimiento Preventivo</option> <option value="pos">Sistemas Administrativos y POS (ASPEL)</option> <option value="other">Otro / No sé aún</option> </select> </div> <div class="form-group"> <label for="message">Cuéntanos tu proyecto <span aria-hidden="true">*</span></label> <textarea id="message" name="message" rows="5" aria-required="true" placeholder="Describe brevemente qué necesitas y cuál es tu reto actual…"></textarea> </div> <!-- Honeypot anti-spam: oculto para humanos, visible para bots --> <div class="visually-hidden" aria-hidden="true"> <label for="website">No rellenar (honeypot)</label> <input type="text" id="website" name="website" tabindex="-1" autocomplete="off"> </div> <button type="submit" class="btn btn-primary btn-full">
+Enviar mensaje
+</button> <p class="form-legal">
+Al enviar este formulario aceptas nuestra
+<a href="/privacidad">Política de Privacidad</a>.
+            No enviamos spam.
+</p> </form> </div> <!-- ── Información de contacto directo ────────────────────────── --> <aside class="contact-info" aria-label="Información de contacto directo"> <h3>Otros canales de contacto</h3> <p class="contact-name">Porfirio A Rivera C</p> <address> <ul class="contact-list"> <li> <!-- rel="noopener noreferrer" en target="_blank" por seguridad --> <a href="mailto:andres.rivera@alexandriastudio.cloud">
+andres.rivera@alexandriastudio.cloud
+</a> </li> <li> <a href="tel:+525518505071">+52 55 1850 5071</a> </li> <li> <a href="https://wa.me/525518505071" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+WhatsApp: 55 1850 5071
+</a> </li> <li> <a href="https://alexandriastudio.cloud" target="_blank" rel="noopener noreferrer">
+alexandriastudio.cloud
+</a> </li> <li>Ciudad de México, México</li> </ul> </address> <!-- Redes sociales --> <nav aria-label="Redes sociales de Alexandria Studio"> <ul class="social-links"> <li> <a href="https://www.linkedin.com/company/alexandria-studio" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Alexandria Studio">
+LinkedIn
+</a> </li> <li> <a href="https://github.com/alexandria-studio" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Alexandria Studio">
+GitHub
+</a> </li> </ul> </nav> </aside> </div> </div> </section> </main>  <footer class="site-footer" role="contentinfo"> <div class="container"> <div class="footer-layout"> <!-- Columna 1: Marca y tagline --> <div class="footer-brand"> <a href="/" aria-label="Alexandria Studio — Inicio"> <img src="/images/logo-white.svg" alt="Alexandria Studio" width="140" height="32" loading="lazy"> </a> <p class="footer-tagline">
+Iluminando el camino digital de tu empresa.
+</p> </div> <!-- Columna 2: Mapa del sitio rápido --> <nav aria-label="Mapa del sitio"> <h3 class="footer-nav-title">Navegación</h3> <ul> <li><a href="#inicio">Inicio</a></li> <li><a href="#nosotros">Nosotros</a></li> <li><a href="#servicios">Servicios</a></li> <li><a href="#contacto">Contacto</a></li> </ul> </nav> <!-- Columna 3: Servicios (refuerzo de keywords para SEO interno) --> <nav aria-label="Servicios"> <h3 class="footer-nav-title">Servicios</h3> <ul> <li>Mesa de Ayuda</li> <li>Infraestructura de Redes</li> <li>Ciberseguridad y Protección</li> <li>Mantenimiento Preventivo</li> <li>Sistemas Administrativos y POS</li> </ul> </nav> </div> <!-- Barra inferior: copyright y enlaces legales --> <div class="footer-bottom"> <small>
+&copy; 2026 Alexandria Studio. Todos los derechos reservados.
+</small> <nav aria-label="Enlaces legales"> <ul class="legal-links"> <li><a href="/privacidad">Aviso de Privacidad</a></li><li><a href="/terminos">Términos de Uso</a></li> </ul> </nav> </div> </div> </footer>   </body> </html>
