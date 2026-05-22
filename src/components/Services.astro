@@ -1,67 +1,114 @@
 ---
 /**
  * components/Services.astro
- * Sección de servicios — los tres pilares de Alexandria Studio.
- * Usa ServiceCard.astro como sub-componente reutilizable.
+ * Sección de servicios — dos pilares navegables con pestañas.
+ * Pilar 1: Estabilidad Operativa · Pilar 2: Ingeniería y Evolución
  */
 
 import ServiceCard from './ServiceCard.astro';
 
-const services = [
+import LifeBuoy    from './icons/lifebuoy.svg?raw';
+import Activity    from './icons/activity.svg?raw';
+import Network     from './icons/network.svg?raw';
+import ShieldCheck from './icons/shield-check.svg?raw';
+import Calculator  from './icons/calculator.svg?raw';
+import Monitor     from './icons/monitor.svg?raw';
+import Braces      from './icons/braces.svg?raw';
+import Brain       from './icons/brain.svg?raw';
+
+const stability = [
   {
-    icon: '/icons/helpdesk.svg',
+    icon: LifeBuoy,
     title: 'Mesa de Ayuda',
-    description:
-      'Lo básico, bien hecho. Soporte integral para mantener a tu equipo productivo: desde el sistema operativo hasta la impresora.',
+    description: 'Soporte integral para que tu equipo trabaje sin interrupciones técnicas.',
     features: [
-      'Mantenimiento preventivo y correctivo',
-      'Soporte Windows y macOS (pantallas azules, lentitud, actualización)',
+      'Mantenimiento preventivo y correctivo de equipos',
+      'Soporte Windows y macOS (pantallas azules, lentitud, actualizaciones)',
       'Microsoft Office, Outlook y lectores PDF',
       'Gestión de cuentas, Directorio Activo y correos corporativos',
-      'Impresoras, escáneres y webcams',
+      'Impresoras, escáneres y periféricos',
+    ],
+    crossSell: {
+      text: '¿Cansado de tareas repetitivas? Automatiza tus procesos diarios.',
+      href: '#servicios',
+      targetTab: 'panel-engineering',
+    },
+  },
+  {
+    icon: Activity,
+    title: 'Mantenimiento Preventivo',
+    description: 'Prolonga la vida útil de tus activos con revisiones y actualizaciones programadas.',
+    features: [
+      'Limpieza física de hardware (CPU, laptops, servidores)',
+      'Actualizaciones programadas fuera de horario operativo',
+      'Diagnóstico de rendimiento y recomendaciones de upgrades',
     ],
   },
   {
-    icon: '/icons/network.svg',
-    title: 'Infraestructura de Redes (LAN & Wireless)',
-    description:
-      'Diagnóstico y optimización de tu red para una conexión estable y segura en toda la oficina.',
+    icon: Network,
+    title: 'Infraestructura de Redes',
+    description: 'Redes estables y seguras para toda tu oficina, sin zonas muertas.',
     features: [
       'Wi-Fi corporativo: eliminación de zonas muertas',
       'Configuración de redes de invitados y principales',
-      'Cableado y switching para máxima velocidad',
+      'Cableado estructurado y switching para máxima velocidad',
     ],
   },
   {
-    icon: '/icons/security.svg',
+    icon: ShieldCheck,
     title: 'Ciberseguridad y Protección',
-    description:
-      'Blindamos tus equipos y tu información crítica ante ataques digitales y pérdida de datos.',
+    description: 'Blindamos tus equipos e información crítica ante ataques digitales.',
     features: [
-      'Blindaje de equipos contra ataques digitales',
+      'Blindaje de equipos contra ataques y ransomware',
       'Limpieza lógica y optimización de rendimiento',
       'Políticas de respaldo (Backup) para información crítica',
     ],
   },
   {
-    icon: '/icons/maintenance.svg',
-    title: 'Mantenimiento Preventivo',
-    description:
-      'Prolonga la vida útil de tus activos con mantenimiento físico y actualizaciones programadas fuera de horario operativo.',
-    features: [
-      'Limpieza física de hardware',
-      'Actualizaciones programadas fuera de horario operativo',
-    ],
-  },
-  {
-    icon: '/icons/pos.svg',
-    title: 'Sistemas Administrativos y Puntos de Venta',
-    description:
-      'Soporte especializado en software administrativo y configuración de equipos de punto de venta.',
+    icon: Calculator,
+    title: 'Sistemas Administrativos y POS',
+    description: 'Soporte especializado para ASPEL, puntos de venta y periféricos.',
     features: [
       'ASPEL SAE, COI y NOI (instalación, red y respaldos)',
       'Impresoras térmicas y lectores de código de barras',
       'Cajones de dinero y periféricos POS',
+    ],
+    crossSell: {
+      text: '¿Tu volumen de datos ya superó a tu sistema actual? Descubre nuestro desarrollo de Software a la Medida.',
+      href: '#servicios',
+      targetTab: 'panel-engineering',
+    },
+  },
+];
+
+const engineering = [
+  {
+    icon: Monitor,
+    title: 'Desarrollo Web y Plataformas',
+    description: 'Sitios y plataformas corporativas modernas que representan tu identidad digital.',
+    features: [
+      'Presencia Digital: diseño y despliegue de sitios web corporativos modernos, rápidos y responsivos',
+      'Portales a la Medida: plataformas web interactivas adaptadas a la identidad y necesidades de tu empresa',
+    ],
+  },
+  {
+    icon: Braces,
+    title: 'Software y Arquitectura a la Medida',
+    description: 'APIs, bases de datos y sistemas ERP/DMS diseñados para tu operación específica.',
+    features: [
+      'Arquitectura Backend: APIs robustas y de alto rendimiento para interconectar tus sistemas comerciales',
+      'Bases de Datos Avanzadas: diseño, optimización y mantenimiento de bases de datos relacionales complejas',
+      'Sistemas Core Corporativos: plataformas DMS y módulos ERP adaptados a tus reglas de negocio',
+    ],
+  },
+  {
+    icon: Brain,
+    title: 'Automatización e IA: Reduce el error humano y acelera tus procesos internos',
+    description: 'Automatización inteligente e IA integrada para potenciar tu operación.',
+    features: [
+      'Eficiencia Operativa: automatización de flujos de trabajo y tareas repetitivas mediante scripts',
+      'Integración de IA Generativa: modelos de inteligencia artificial en tus sistemas para análisis y creación de contenido',
+      'Búsqueda Inteligente (RAG): recuperación de información empresarial con bases de datos vectoriales para consultas conversacionales',
     ],
   },
 ];
@@ -74,30 +121,150 @@ const services = [
 >
   <div class="container">
 
-    <!-- H2 — Título de sección -->
     <h2 id="services-heading">
       Servicios diseñados para impulsar tu negocio
     </h2>
 
     <p class="section-subtitle">
-      Tres pilares de consultoría tecnológica que se complementan para
-      llevar a tu empresa al siguiente nivel.
+      Dos pilares complementarios: primero estabilizamos tu operación,
+      luego la llevamos al siguiente nivel.
     </p>
 
-    <!--
-      Grid de tarjetas de servicio.
-      role="list" restaura la semántica de lista que algunos resets de CSS eliminan.
-    -->
-    <div class="services-grid" role="list">
-      {services.map((service) => (
-        <ServiceCard
-          icon={service.icon}
-          title={service.title}
-          description={service.description}
-          features={service.features}
-        />
-      ))}
+    <!-- Pestañas de pilares -->
+    <div class="services-tabs" role="tablist" aria-label="Pilares de servicio">
+
+      <button
+        role="tab"
+        id="tab-stability"
+        class="services-tab-btn is-active"
+        aria-selected="true"
+        aria-controls="panel-stability"
+      >
+        <span class="tab-eyebrow">Pilar 1</span>
+        <span class="tab-name">Estabilidad Operativa</span>
+        <span class="tab-sub">El Cimiento</span>
+      </button>
+
+      <button
+        role="tab"
+        id="tab-engineering"
+        class="services-tab-btn"
+        aria-selected="false"
+        aria-controls="panel-engineering"
+      >
+        <span class="tab-eyebrow">Pilar 2</span>
+        <span class="tab-name">Ingeniería y Evolución</span>
+        <span class="tab-sub">El Crecimiento</span>
+      </button>
+
+    </div>
+
+    <!-- Panel Pilar 1 -->
+    <div
+      id="panel-stability"
+      role="tabpanel"
+      aria-labelledby="tab-stability"
+      class="services-panel is-active"
+    >
+      <div class="services-grid" role="list">
+        {stability.map((s) => (
+          <ServiceCard
+            icon={s.icon}
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            crossSell={s.crossSell}
+          />
+        ))}
+      </div>
+    </div>
+
+    <!-- Panel Pilar 2 -->
+    <div
+      id="panel-engineering"
+      role="tabpanel"
+      aria-labelledby="tab-engineering"
+      class="services-panel"
+    >
+      <div class="services-grid services-grid--centered" role="list">
+        {engineering.map((s) => (
+          <ServiceCard
+            icon={s.icon}
+            title={s.title}
+            description={s.description}
+            features={s.features}
+          />
+        ))}
+      </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  // ── Cambio de pestañas ──
+  const tabs   = document.querySelectorAll<HTMLButtonElement>('.services-tab-btn');
+  const panels = document.querySelectorAll<HTMLElement>('.services-panel');
+
+  function collapseAllCards(): void {
+    document.querySelectorAll<HTMLElement>('.service-card.is-expanded').forEach(collapseCard);
+  }
+
+  function activateTab(tab: HTMLButtonElement): void {
+    // Cerrar todas las tarjetas abiertas antes de cambiar de panel
+    collapseAllCards();
+    tabs.forEach(t => { t.setAttribute('aria-selected', 'false'); t.classList.remove('is-active'); });
+    panels.forEach(p => p.classList.remove('is-active'));
+    tab.setAttribute('aria-selected', 'true');
+    tab.classList.add('is-active');
+    const target = document.getElementById(tab.getAttribute('aria-controls')!);
+    target?.classList.add('is-active');
+  }
+
+  tabs.forEach(tab => tab.addEventListener('click', () => activateTab(tab)));
+
+  // ── Expand/collapse de tarjetas — mutuamente excluyentes (táctil / móvil) ──
+  function collapseCard(card: HTMLElement): void {
+    card.classList.remove('is-expanded');
+    const btn = card.querySelector<HTMLButtonElement>('.service-expand-btn');
+    if (!btn) return;
+    btn.setAttribute('aria-expanded', 'false');
+    const label = btn.querySelector('.expand-label');
+    if (label) label.textContent = 'Saber más';
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.service-expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card     = btn.closest<HTMLElement>('.service-card')!;
+      const willExpand = !card.classList.contains('is-expanded');
+
+      // Cerrar todas las tarjetas del mismo panel
+      const panel = card.closest<HTMLElement>('.services-panel');
+      panel?.querySelectorAll<HTMLElement>('.service-card').forEach(c => {
+        if (c !== card) collapseCard(c);
+      });
+
+      if (willExpand) {
+        card.classList.add('is-expanded');
+        btn.setAttribute('aria-expanded', 'true');
+        const label = btn.querySelector('.expand-label');
+        if (label) label.textContent = 'Ver menos';
+      } else {
+        collapseCard(card);
+      }
+    });
+  });
+
+  // ── Cross-sell: los enlaces dentro de Pilar 1 activan Pilar 2 ──
+  // activateTab ya cierra todas las tarjetas, incluida la que contiene el enlace cross-sell
+  document.querySelectorAll<HTMLAnchorElement>('[data-target-tab]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.dataset.targetTab!;
+      const tab = document.querySelector<HTMLButtonElement>(`[aria-controls="${targetId}"]`);
+      if (tab) activateTab(tab);
+      document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+

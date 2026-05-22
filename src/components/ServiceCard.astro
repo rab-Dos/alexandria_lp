@@ -1,50 +1,72 @@
 ---
 /**
  * components/ServiceCard.astro
- * Tarjeta reutilizable para cada servicio.
- * Se renderiza dentro de Services.astro.
+ * Tarjeta de servicio minimalista.
+ * Muestra: icono + título + descripción (una línea).
+ * Detalle (features + cross-sell): visible en hover desktop / toggle en móvil.
  */
 
-interface Props {
-  icon: string;      // ruta SVG o nombre de icono
-  title: string;     // H3 dentro de la tarjeta
-  description: string;
-  features: string[];
-  ctaLabel?: string;
-  ctaHref?: string;
+interface CrossSell {
+  text: string;
+  href: string;
+  targetTab?: string;
 }
 
-const {
-  icon,
-  title,
-  description,
-  features,
-  ctaLabel = 'Saber más',
-  ctaHref  = '#contacto',
-} = Astro.props;
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  crossSell?: CrossSell;
+}
+
+const { icon, title, description, features, crossSell } = Astro.props;
 ---
 
-<article class="service-card">
+<article class="service-card" role="listitem">
 
-  <!-- Icono del servicio (decorativo si el título ya lo describe) -->
-  <div class="service-icon" aria-hidden="true">
-    <img src={icon} alt="" width="48" height="48" loading="lazy" />
+  <!-- Vista frontal: siempre visible -->
+  <div class="service-card-front">
+    <div class="service-icon" aria-hidden="true" set:html={icon} />
+    <h3>{title}</h3>
+    <p class="service-desc">{description}</p>
   </div>
 
-  <!-- H3 — Un nivel por debajo del H2 de la sección Servicios -->
-  <h3>{title}</h3>
+  <!-- Divisor sutil: invisible en estado base, visible al expandir -->
+  <hr class="service-divider" aria-hidden="true" />
 
-  <p>{description}</p>
+  <!-- Detalle: visible en hover (desktop) o al expandir (móvil) -->
+  <div class="service-card-details" aria-hidden="true">
+    <ul class="service-features">
+      {features.map((f) => <li>{f}</li>)}
+    </ul>
 
-  <!-- Lista de características clave del servicio -->
-  <ul class="service-features">
-    {features.map((feature) => (
-      <li>{feature}</li>
-    ))}
-  </ul>
+    {crossSell && (
+      <a
+        href={crossSell.href}
+        class="service-cross-sell"
+        data-target-tab={crossSell.targetTab}
+      >
+        <svg class="service-cross-sell-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <span>{crossSell.text}</span>
+      </a>
+    )}
+  </div>
 
-  <a href={ctaHref} class="btn btn-outline">
-    {ctaLabel}
-  </a>
+  <!-- Botón expand (visible solo en táctil / sin hover) -->
+  <button
+    type="button"
+    class="service-expand-btn"
+    aria-expanded="false"
+    aria-label={`Ver detalles: ${title}`}
+  >
+    <span class="expand-label">Saber más</span>
+    <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
 
 </article>
