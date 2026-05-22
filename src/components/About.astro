@@ -1,8 +1,10 @@
 ---
 /**
  * components/About.astro
- * Sección "Nosotros" — misión, visión y el concepto del faro guía.
- * H2 como título de sección; H3 para cada pilar interno.
+ * Sección "Nuestra Esencia" — dividida en tres partes narrativas:
+ *  1. Historia y propuesta de valor
+ *  2. El logotipo como manifiesto de identidad
+ *  3. Misión, Visión y Valores
  */
 ---
 
@@ -13,58 +15,252 @@
 >
   <div class="container">
 
-    <!-- H2 — Título de sección (jerarquía descendente del H1 del Hero) -->
-    <h2 id="about-heading">
-      Somos el faro que guía tu empresa en el mundo digital
-    </h2>
+    <!-- ══════════════════════════════════════════════════
+         PARTE 1 — Historia y propuesta de valor
+         ══════════════════════════════════════════════════ -->
+    <div class="about-part about-story">
+      <div class="about-story-grid">
 
-    <p class="section-subtitle">
-      En <strong>alexandriaStudio.cloud</strong> hemos evolucionado junto con la
-      tecnología desde nuestro inicio en 2017. Hemos pasado de un enfoque
-      tradicional de soporte a una visión integral que abarca
-      <strong>Infraestructura, Seguridad y Nube</strong>.
-    </p>
+        <!-- Columna izquierda: texto narrativo -->
+        <div class="about-story-text">
+          <h2 id="about-heading">
+            La Evolución Constante como tu Guía
+          </h2>
+          <h3 class="about-lead">
+            Guiamos la evolución tecnológica de tu negocio desde 2017.
+          </h3>
+          <p class="section-body">
+            En Alexandria Studio, entendemos que el "soporte técnico" quedó en el pasado.
+            Desde nuestro inicio en 2017, hemos evolucionado a la par de la tecnología
+            para ofrecer una visión integral: <strong>Infraestructura, Seguridad y Nube</strong>.
+            Nos convertimos en tu departamento de TI externo porque comprendemos la realidad
+            operativa actual: una caída de red o un incidente de seguridad no es una simple
+            molestia técnica, es una parálisis del negocio y pérdida de capital.
+            Tú te enfocas en el crecimiento; nosotros aseguramos la continuidad operativa.
+          </p>
+        </div>
 
-    <p class="section-body">
-      Entendemos que hoy en día, una caída de internet o un virus no es solo una
-      molestia técnica: es dinero perdido. Por eso, nos convertimos en tu
-      departamento de TI externo, garantizando que tú te enfoques en tu negocio
-      mientras nosotros aseguramos tu operación.
-    </p>
+        <!-- Columna derecha: tarjeta de métricas animada -->
+        <div class="about-story-media" aria-hidden="true">
+          <div class="metrics-wrapper">
+            <div class="metrics-card">
 
-    <!-- Grid de pilares internos: misión / visión / valores -->
-    <div class="about-grid" role="list">
+              <!-- Encabezado: título e insignia de estado -->
+              <div class="metrics-header">
+                <div>
+                  <p class="metrics-label">Métricas de Continuidad</p>
+                  <p class="metrics-title">Estado del Sistema</p>
+                </div>
+                <div class="metrics-status-badge">
+                  <span class="metrics-status-dot"></span>
+                  <span>Operativo</span>
+                </div>
+              </div>
 
-      <article role="listitem" class="about-card">
-        <!-- H3 — Subtítulo dentro de la sección Nosotros -->
-        <h3>Nuestra Misión</h3>
+              <!-- Métrica principal: uptime -->
+              <div class="metrics-uptime">
+                <div class="metrics-uptime-row">
+                  <span class="metrics-uptime-number">99.99</span>
+                  <span class="metrics-uptime-symbol">%</span>
+                </div>
+                <p class="metrics-uptime-desc">Uptime garantizado. Cero caídas, cero pérdidas.</p>
+              </div>
+
+              <!-- Divisor -->
+              <div class="metrics-divider"></div>
+
+              <!-- Mapa de calor de actividad -->
+              <div class="metrics-heatmap">
+                <div class="metrics-heatmap-labels">
+                  <span>Actividad de Servidores (Últimos 90 días)</span>
+                  <span>Hoy</span>
+                </div>
+                <div class="heatmap-grid" id="heatmapContainer"></div>
+                <div class="heatmap-legend">
+                  <span>Menos</span>
+                  <div class="heatmap-cell level-0"></div>
+                  <div class="heatmap-cell level-1"></div>
+                  <div class="heatmap-cell level-2"></div>
+                  <div class="heatmap-cell level-3"></div>
+                  <span>Más</span>
+                </div>
+              </div>
+
+              <!-- Nota de respaldo -->
+              <div class="metrics-footer-note">
+                <svg class="metrics-footer-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618
+                       3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332
+                       9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                  </path>
+                </svg>
+                <div>
+                  <p class="metrics-footer-title">Desde 2017 asegurando operaciones.</p>
+                  <p class="metrics-footer-desc">Porque una caída de red es dinero perdido. Tu tranquilidad es nuestra prioridad.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         PARTE 2 — El logotipo como manifiesto de identidad
+         ══════════════════════════════════════════════════ -->
+    <div class="about-part about-logo-split">
+
+      <figure class="about-logo-figure">
+        <img
+          src="/Alexandria_alternativo.png"
+          alt="Logotipo de Alexandria Studio: faro de circuitos sobre base de código"
+          width="320"
+          height="320"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+
+      <div class="about-logo-lore">
+        <h3>¿Por qué un Faro de Circuitos?</h3>
         <p>
-          Convertirnos en el departamento de TI externo de tu empresa:
-          garantizando continuidad operativa, seguridad y crecimiento tecnológico
-          para que tú te enfoques en tu negocio.
+          Nuestra identidad visual no es solo un dibujo; es la representación
+          arquitectónica y digital de lo que somos para ti.
         </p>
-      </article>
 
-      <article role="listitem" class="about-card">
-        <h3>Nuestra Visión</h3>
-        <p>
-          Ser el aliado tecnológico de referencia en México: el punto de confianza
-          al que acuden las organizaciones cuando necesitan infraestructura sólida,
-          redes estables y continuidad digital garantizada.
-        </p>
-      </article>
+        <dl class="about-legend">
 
-      <article role="listitem" class="about-card">
-        <h3>Nuestros Valores</h3>
-        <ul>
-          <li>Transparencia en cada proceso</li>
-          <li>Excelencia técnica sin excusas</li>
-          <li>Compromiso con el resultado de tu negocio</li>
-          <li>Comunicación clara y directa</li>
-        </ul>
-      </article>
+          <div class="about-legend-item">
+            <dt>La Estructura del Faro</dt>
+            <dd>
+              <strong>El Faro de Alejandría Modernizado.</strong> Representa la luz
+              del conocimiento estructurado y la sabiduría clásica aplicadas a la
+              tecnología. Somos la guía sólida en la "tormenta" de datos y opciones digitales.
+            </dd>
+          </div>
 
+          <div class="about-legend-item">
+            <dt>Los Rayos de Circuito</dt>
+            <dd>
+              <strong>La Luz como Datos y Conectividad.</strong> La luz que emana de
+              nuestro faro no es fuego, es información pura y energía digital
+              (los circuitos). Irradiamos soluciones tecnológicas precisas y
+              conectividad avanzada.
+            </dd>
+          </div>
+
+          <div class="about-legend-item">
+            <dt>La Espiral Ascendente</dt>
+            <dd>
+              <strong>Evolución y Adaptación.</strong> Es el "ADN" de nuestro estudio.
+              Representa el crecimiento dinámico y la capacidad de adaptarnos
+              constantemente a nuevas tecnologías (como la Nube y la Automatización)
+              para elevar tu negocio.
+            </dd>
+          </div>
+
+          <div class="about-legend-item">
+            <dt>El Bloque Base <code>[&#123;&lt;A&gt;&#125;]</code></dt>
+            <dd>
+              <strong>La Base del Código y la Programación.</strong> Esta es nuestra
+              cimentación. Usamos sintaxis de programación real para indicar que
+              nuestras soluciones son a la medida, sólidas y nacidas desde la
+              ingeniería de software.
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         PARTE 3 — Misión, Visión y Valores
+         ══════════════════════════════════════════════════ -->
+    <div class="about-part">
+      <div class="about-grid" role="list">
+
+        <article role="listitem" class="about-card">
+          <h3>Nuestra Misión</h3>
+          <p>
+            Ser tu aliado estratégico operativo, no solo tu proveedor. Nos
+            convertimos en tu departamento de TI externo para garantizar la
+            continuidad operativa, la seguridad y el crecimiento tecnológico,
+            blindando tu negocio para que puedas enfocarte en tu propósito principal.
+          </p>
+        </article>
+
+        <article role="listitem" class="about-card">
+          <h3>Nuestra Visión</h3>
+          <p>
+            Consolidarnos como el aliado tecnológico de referencia en México. Queremos
+            ser el primer punto de confianza (el faro visible) al que acudan las
+            organizaciones cuando necesiten infraestructura sólida, redes inquebrantables
+            y continuidad digital garantizada.
+          </p>
+        </article>
+
+        <article role="listitem" class="about-card about-card--values">
+          <h3>Nuestros Valores</h3>
+            <ul>
+            <li><span><strong>Transparencia Absoluta:</strong> Reportamos cada proceso con claridad.</span></li>
+            <li><span><strong>Excelencia Técnica sin Excusa:</strong> Soluciones de nivel corporativo para cualquier escala.</span></li>
+            <li><span><strong>Compromiso con tu Resultado:</strong> Tu crecimiento es nuestro éxito.</span></li>
+            <li><span><strong>Comunicación Clara y Directa:</strong> Sin tecnicismos innecesarios, solo soluciones.</span></li>
+            </ul>
+        </article>
+
+      </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  // ── Heatmap de actividad de servidores (Métricas de Continuidad) ──
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('heatmapContainer');
+    if (!container) return;
+
+    const TOTAL_DAYS = 90;
+    const ROWS       = 7; // días de la semana
+
+    // Genera datos de uptime simulados (mayoría nivel 3 — operación óptima)
+    function generateData(): number[] {
+      return Array.from({ length: TOTAL_DAYS }, () => {
+        const r = Math.random();
+        if (r > 0.98) return 1; // mantenimiento puntual
+        if (r > 0.90) return 2; // operación normal
+        return 3;               // operación óptima
+      });
+    }
+
+    const data     = generateData();
+    const fragment = document.createDocumentFragment();
+
+    data.forEach((level, index) => {
+      const cell = document.createElement('div');
+      cell.classList.add('heatmap-cell', `level-${level}`);
+
+      // Tooltip nativo con fecha y estado
+      const date = new Date();
+      date.setDate(date.getDate() - (TOTAL_DAYS - 1 - index));
+      const dateStr    = date.toLocaleDateString('es-MX', { month: 'short', day: 'numeric' });
+      const statusText = level === 1 ? 'Mantenimiento preventivo'
+                       : level === 2 ? 'Operación normal'
+                       :               'Operación óptima';
+      cell.setAttribute('title', `${dateStr}: ${statusText}`);
+
+      // Animación de entrada escalonada
+      cell.style.opacity   = '0';
+      cell.style.animation = `fadeInUp 0.3s ease forwards ${index * 0.005 + 0.4}s`;
+
+      fragment.appendChild(cell);
+    });
+
+    container.appendChild(fragment);
+  });
+</script>
