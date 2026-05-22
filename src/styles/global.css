@@ -1651,15 +1651,14 @@
   .site-footer {
     background-color: var(--color-graphite-700);
     border-top: 1px solid var(--color-graphite-500);
-    padding-block: 4rem 2rem;
+    padding-block-start: 4rem;
   }
 
   .footer-layout {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr 2fr;
     gap: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--color-graphite-500);
+    padding-bottom: 1rem;
   }
 
   .footer-brand {
@@ -1684,10 +1683,32 @@
     margin-bottom: 1rem;
   }
 
-  .site-footer nav ul {
+  .site-footer nav ul,
+  .footer-services ul {
     display: flex;
     flex-direction: column;
     gap: 0.625rem;
+  }
+
+  .footer-services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-pillar-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-azure-glow);
+    margin-bottom: 0.625rem;
+  }
+
+  .footer-services li {
+    font-size: 0.9375rem;
+    color: var(--color-slate-300);
+    line-height: 1.55;
   }
 
   .site-footer nav a {
@@ -1704,7 +1725,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2rem;
+    padding-block: 1.5rem 2rem;
+    border-top: 1px solid var(--color-graphite-500);
   }
 
   .footer-bottom small {
@@ -1725,6 +1747,55 @@
 
   .legal-links a:hover {
     color: var(--color-snow);
+  }
+
+  /* ── Footer Globe (Three.js) ── */
+  .footer-globe {
+    position: relative;
+    height: 360px;
+    overflow: hidden;
+    background: radial-gradient(
+      ellipse 80% 100% at 50% 100%,
+      color-mix(in srgb, var(--color-azure-core) 12%, var(--color-void-black)) 0%,
+      var(--color-graphite-700) 70%
+    );
+  }
+
+  /* Gradiente superior: funde el globo con el contenido del footer */
+  .footer-globe::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--color-graphite-700) 0%,
+      transparent 35%
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  #footer-globe-canvas {
+    position: absolute;
+    inset: 0;
+  }
+
+  #footer-globe-canvas canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  @media (min-width: 1200px) {
+    .footer-globe {
+      height: 520px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .footer-globe {
+      height: 640px;
+    }
   }
 
   /* ──────────────────────────────────────────────────────
