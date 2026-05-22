@@ -176,6 +176,69 @@
     border-color: var(--color-graphite-400);
   }
 
+  /* Variante azul — contraste con btn-primary en el Hero */
+  .btn-azure {
+    background-color: color-mix(in srgb, var(--color-azure-core) 18%, transparent);
+    color: var(--color-azure-frost);
+    border-color: color-mix(in srgb, var(--color-azure-core) 55%, transparent);
+  }
+
+  .btn-azure:hover {
+    background-color: color-mix(in srgb, var(--color-azure-core) 30%, transparent);
+    border-color: var(--color-azure-glow);
+    color: var(--color-snow);
+  }
+
+  /* Animación de borde giratoria — misma técnica que .nav-cta */
+  .btn-beam {
+    position: relative;
+  }
+
+  .btn-beam::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 9999px;
+    padding: 3px;
+    background: conic-gradient(
+      from var(--nav-cta-a),
+      transparent  0%,
+      transparent 60%,
+      var(--color-azure-glow)  74%,
+      var(--color-azure-core)  82%,
+      var(--color-azure-core)  90%,
+      var(--color-azure-glow)  98%,
+      transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: nav-cta-spin 3s linear infinite;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease-in;
+  }
+
+  .btn-beam:hover::before {
+    opacity: 1;
+    transition: opacity 0.6s ease-out;
+  }
+
+  /* Variante blanca del beam — para botones sobre fondo oscuro */
+  .btn-beam-white::before {
+    background: conic-gradient(
+      from var(--nav-cta-a),
+      transparent  0%,
+      transparent 60%,
+      var(--color-ash-50)  74%,
+      var(--color-snow)    82%,
+      var(--color-snow)    90%,
+      var(--color-ash-50)  98%,
+      transparent 100%
+    );
+  }
+
   .btn-outline {
     background-color: transparent;
     color: var(--color-azure-frost);
@@ -218,7 +281,11 @@
     display: flex;
     justify-content: center;
     padding: 0.875rem 1.5rem;
-    background: transparent;
+    background: linear-gradient(
+      to bottom,
+      var(--color-void-black) 0%,
+      transparent 100%
+    );
     pointer-events: none;
   }
 
@@ -565,17 +632,19 @@
   .hero-section .container {
     position: relative;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding-block: 6rem;
+    text-align: center;
+    padding-block: 8rem;
   }
 
   .hero-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
+    max-width: 64ch;
   }
 
   .hero-eyebrow {
@@ -589,14 +658,15 @@
   .hero-description {
     font-size: 1.125rem;
     color: var(--color-slate-200);
-    max-width: 50ch;
-    line-height: 1.7;
+    max-width: 58ch;
+    line-height: 1.75;
   }
 
   .hero-actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
     margin-top: 0.5rem;
   }
 
@@ -1061,12 +1131,7 @@
 
   @media (max-width: 768px) {
     .hero-section .container {
-      grid-template-columns: 1fr;
-      padding-block: 4rem;
-    }
-
-    .hero-visual {
-      display: none;
+      padding-block: 5rem;
     }
 
     .about-grid {
