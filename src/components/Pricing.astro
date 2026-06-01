@@ -1,0 +1,1582 @@
+---
+/**
+ * components/Pricing.astro
+ * Sección "Paquetes" — dos bloques:
+ *   1. Estabilidad Operativa: Planes de Soporte TI (Essential / Business Pro / Premium)
+ *   2. Ingeniería y Evolución: Paquetes Web (One Page / Corporativa / E-Commerce)
+ * Incluye tabla comparativa premium y beneficios por pago anticipado.
+ */
+---
+
+<section
+  id="paquetes"
+  aria-labelledby="pricing-heading"
+  class="pricing-section"
+>
+
+  <!-- ── Atmosphère radial (misma convención que Services) ─────── -->
+  <div class="pricing-atmosphere" aria-hidden="true"></div>
+
+  <div class="container">
+
+    <!-- ── Encabezado ──────────────────────────────────────────── -->
+    <header class="pricing-header">
+      <h2 id="pricing-heading">
+        Diseñados a la medida&nbsp;de&nbsp;tu&nbsp;crecimiento
+      </h2>
+      <p class="section-subtitle">
+        En Alexandria Studio no creemos en cobrar por sorpresas. Nuestros planes
+        están estructurados para brindarte exactamente el nivel de soporte y
+        desarrollo que tu operación necesita hoy, con la capacidad de escalar mañana.
+      </p>
+    </header>
+
+    <!-- ── Pestañas ────────────────────────────────────────────── -->
+    <div class="pricing-tabs" role="tablist" aria-label="Categorías de paquetes">
+
+      <button
+        role="tab"
+        id="ptab-ti"
+        class="pricing-tab-btn is-active"
+        aria-selected="true"
+        aria-controls="ppanel-ti"
+      >
+        <span class="tab-name">Estabilidad Operativa</span>
+        <span class="tab-sub">Planes de Soporte TI</span>
+      </button>
+
+      <button
+        role="tab"
+        id="ptab-web"
+        class="pricing-tab-btn"
+        aria-selected="false"
+        aria-controls="ppanel-web"
+      >
+        <span class="tab-name">Presencia Digital</span>
+        <span class="tab-sub">Paquetes Web</span>
+      </button>
+
+      <button
+        role="tab"
+        id="ptab-corp"
+        class="pricing-tab-btn"
+        aria-selected="false"
+        aria-controls="ppanel-corp"
+      >
+        <span class="tab-name">Ingeniería Avanzada</span>
+        <span class="tab-sub">Soluciones Corporativas</span>
+      </button>
+
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         PANEL 1 — SOPORTE TI
+    ════════════════════════════════════════════════════════════ -->
+    <div
+      id="ppanel-ti"
+      role="tabpanel"
+      aria-labelledby="ptab-ti"
+      class="pricing-panel is-active"
+    >
+
+      <p class="panel-intro">
+        <em>Nuestros esquemas de departamento de TI externo aseguran que nunca te detengas.</em>
+      </p>
+
+      <!-- ── Tarjetas de planes ─────────────────────────────── -->
+      <div class="plans-grid" role="list">
+
+        <!-- Essential -->
+        <article class="plan-card" role="listitem">
+          <div class="plan-card-inner">
+            <div class="plan-header">
+              <span class="plan-badge">Essential</span>
+              <p class="plan-tagline">Agilidad para el día a día</p>
+              <div class="plan-price">
+                <span class="plan-amount">$550</span>
+                <span class="plan-unit">MXN + IVA / equipo·mes</span>
+              </div>
+            </div>
+            <p class="plan-desc">
+              Ideal para startups o profesionales independientes que requieren
+              asistencia rápida y confiable.
+            </p>
+            <ul class="plan-features">
+              <li class="feat-yes">Soporte Remoto Ilimitado (5×8)</li>
+              <li class="feat-yes">Monitoreo básico de antivirus</li>
+              <li class="feat-yes">Soporte básico a conectividad internet</li>
+              <li class="feat-no">Soporte ASPEL ni POS</li>
+            </ul>
+            <a href="#contacto" class="plan-cta plan-cta--ghost">Comenzar</a>
+          </div>
+        </article>
+
+        <!-- Business Pro -->
+        <article class="plan-card plan-card--featured" role="listitem">
+          <div class="plan-card-inner">
+            <div class="plan-featured-badge" aria-label="Plan recomendado">Recomendado</div>
+            <div class="plan-header">
+              <span class="plan-badge">Business Pro</span>
+              <p class="plan-tagline">Continuidad Total</p>
+              <div class="plan-price">
+                <span class="plan-amount">$850</span>
+                <span class="plan-unit">MXN + IVA / equipo·mes</span>
+              </div>
+            </div>
+            <p class="plan-desc">
+              El equilibrio perfecto: seguridad robusta y presencia física
+              cuando se necesita.
+            </p>
+            <ul class="plan-features">
+              <li class="feat-yes">Todo lo incluido en Essential</li>
+              <li class="feat-yes">2 visitas en sitio mensuales</li>
+              <li class="feat-yes">Soporte Técnico ASPEL (instalación y red)</li>
+              <li class="feat-yes">Optimización avanzada Redes Wi-Fi / LAN</li>
+              <li class="feat-yes">Mantenimiento físico trimestral</li>
+              <li class="feat-yes">Gestión de impresoras y periféricos</li>
+            </ul>
+            <a href="#contacto" class="plan-cta plan-cta--primary">Comenzar</a>
+          </div>
+        </article>
+
+        <!-- Premium -->
+        <article class="plan-card" role="listitem">
+          <div class="plan-card-inner">
+            <div class="plan-header">
+              <span class="plan-badge">Premium</span>
+              <p class="plan-tagline">Infraestructura Global</p>
+              <div class="plan-price">
+                <span class="plan-amount">$1,350</span>
+                <span class="plan-unit">MXN + IVA / equipo·mes</span>
+              </div>
+            </div>
+            <p class="plan-desc">
+              Para empresas críticas que simplemente no pueden permitirse
+              detenerse.
+            </p>
+            <ul class="plan-features">
+              <li class="feat-yes">Todo lo incluido en Business Pro</li>
+              <li class="feat-yes">Soporte Prioritario para emergencias</li>
+              <li class="feat-yes">4 visitas en sitio mensuales</li>
+              <li class="feat-yes">Gestión de Servidores y VPNs</li>
+              <li class="feat-yes">Backups en la Nube</li>
+              <li class="feat-yes">Préstamo de equipo de respaldo</li>
+            </ul>
+            <a href="#contacto" class="plan-cta plan-cta--ghost">Comenzar</a>
+          </div>
+        </article>
+
+      </div><!-- /plans-grid -->
+
+      <!-- ── Tabla Comparativa ──────────────────────────────── -->
+      <div class="compare-wrapper">
+        <h3 class="compare-title">Comparativa de planes</h3>
+        <div class="compare-scroll" role="region" aria-label="Tabla comparativa de planes" tabindex="0">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th scope="col" class="compare-feature-col">Característica</th>
+                <th scope="col">Essential</th>
+                <th scope="col" class="col-featured">Business Pro</th>
+                <th scope="col">Premium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Soporte Básico (Windows / Office / Correo)</td>
+                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
+                <td class="col-featured"><span class="ci ci--yes" aria-label="Incluido"></span></td>
+                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
+              </tr>
+              <tr>
+                <td>Soporte Técnico ASPEL y POS</td>
+                <td><span class="ci ci--no" aria-label="No incluido"></span></td>
+                <td class="col-featured"><span class="ci ci--yes" aria-label="Incluido"></span></td>
+                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
+              </tr>
+              <tr>
+                <td>Ciberseguridad &amp; Antivirus</td>
+                <td><span class="ci-text">Básico</span></td>
+                <td class="col-featured"><span class="ci-text">Avanzado</span></td>
+                <td><span class="ci-text">Total</span></td>
+              </tr>
+              <tr>
+                <td>Gestión de Red Wi-Fi / LAN</td>
+                <td><span class="ci-text">Básica</span></td>
+                <td class="col-featured"><span class="ci-text">Optimizada</span></td>
+                <td><span class="ci-text">Avanzada</span></td>
+              </tr>
+              <tr>
+                <td>Visitas en Sitio (Mensuales)</td>
+                <td><span class="ci-text ci-text--muted">Costo Preferencial</span></td>
+                <td class="col-featured"><span class="ci-text">2 incluidas</span></td>
+                <td><span class="ci-text">4 incluidas</span></td>
+              </tr>
+              <tr>
+                <td>Mantenimiento Físico</td>
+                <td><span class="ci-text ci-text--muted">Costo Preferencial</span></td>
+                <td class="col-featured"><span class="ci-text">Trimestral</span></td>
+                <td><span class="ci-text">Bimestral</span></td>
+              </tr>
+              <tr>
+                <td>Soporte 24/7 y Backups Cloud</td>
+                <td><span class="ci ci--no" aria-label="No incluido"></span></td>
+                <td class="col-featured"><span class="ci ci--no" aria-label="No incluido"></span></td>
+                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
+              </tr>
+              <tr class="compare-price-row">
+                <td>Inversión Mensual por Equipo</td>
+                <td><strong>$550</strong></td>
+                <td class="col-featured"><strong>$850</strong></td>
+                <td><strong>$1,350</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div><!-- /compare-scroll -->
+
+        <!-- Condiciones -->
+        <p class="compare-legal">
+          El software y hardware son propiedad exclusiva del cliente, quien es responsable
+          de cubrir los costos asociados de licencias o refacciones. Los costos presentados
+          no incluyen IVA.
+        </p>
+      </div><!-- /compare-wrapper -->
+
+      <!-- ── Beneficios por pago anticipado ─────────────────── -->
+      <div class="discounts-block">
+        <div class="discounts-header">
+          <h3>Beneficios por Pago Anticipado</h3>
+          <span class="discounts-tag">Política 2026</span>
+        </div>
+        <p class="discounts-desc">
+          Optimiza tu presupuesto administrativo protegiendo tu infraestructura por adelantado:
+        </p>
+        <div class="discounts-grid" role="list">
+          <div class="discount-item" role="listitem">
+            <span class="discount-pct">3%</span>
+            <span class="discount-label">Pago Trimestral</span>
+          </div>
+          <div class="discount-item" role="listitem">
+            <span class="discount-pct">5%</span>
+            <span class="discount-label">Pago Semestral</span>
+          </div>
+          <div class="discount-item discount-item--highlight" role="listitem">
+            <span class="discount-pct">10%</span>
+            <span class="discount-label">Pago Anual</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /ppanel-ti -->
+
+    <!-- ════════════════════════════════════════════════════════════
+         PANEL 2 — PAQUETES WEB
+    ════════════════════════════════════════════════════════════ -->
+    <div
+      id="ppanel-web"
+      role="tabpanel"
+      aria-labelledby="ptab-web"
+      class="pricing-panel"
+    >
+
+      <p class="panel-intro">
+        <em>Construimos tu presencia digital con la misma solidez que nuestras redes.</em>
+      </p>
+
+      <!-- Beneficios base -->
+      <div class="web-base-benefits">
+        <p class="web-base-label">Todos los paquetes incluyen:</p>
+        <ul class="web-base-list">
+          <li>
+            <span class="wb-icon" aria-hidden="true">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+              </svg>
+            </span>
+            Hospedaje (Espacio en línea)
+          </li>
+
+          <li>
+            <span class="wb-icon" aria-hidden="true">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </span>
+            Asesoría y consulta gratuitas
+          </li>
+          <li>
+            <span class="wb-icon" aria-hidden="true">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </span>
+            1 año completo de soporte técnico
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tarjetas de paquetes web -->
+      <div class="plans-grid" role="list">
+
+        <!-- One Page -->
+        <article class="plan-card" role="listitem">
+          <div class="plan-card-inner">
+            <div class="plan-header">
+              <span class="plan-badge">One Page</span>
+              <p class="plan-tagline">Impacto concentrado</p>
+              <div class="plan-price">
+                <span class="plan-amount">$5,000</span>
+                <span class="plan-unit">MXN · pago único</span>
+              </div>
+            </div>
+            <p class="plan-desc">
+              Una página web de impacto condensada en navegación fluida. Ideal
+              para lanzar un producto, evento o portafolio rápido.
+            </p>
+            <ul class="plan-features">
+              <li class="feat-yes">Diseño responsive y moderno</li>
+              <li class="feat-yes">Sección única de navegación fluida</li>
+              <li class="feat-yes">Formulario de contacto integrado</li>
+              <li class="feat-yes">Optimización SEO base</li>
+            </ul>
+            <a href="#contacto" class="plan-cta plan-cta--ghost">Cotizar</a>
+          </div>
+        </article>
+
+        <!-- Corporativa -->
+        <article class="plan-card plan-card--featured" role="listitem">
+          <div class="plan-card-inner">
+            <div class="plan-featured-badge" aria-label="Más popular">Más popular</div>
+            <div class="plan-header">
+              <span class="plan-badge">Corporativa</span>
+              <p class="plan-tagline">Presencia completa</p>
+              <div class="plan-price">
+                <span class="plan-amount">$7,000</span>
+                <span class="plan-unit">MXN · pago único</span>
+              </div>
+            </div>
+            <p class="plan-desc">
+              Sitio web estructurado con múltiples secciones diseñado para
+              presentar la amplitud de tu negocio y mejorar tu posicionamiento.
+            </p>
+            <ul class="plan-features">
+              <li class="feat-yes">Inicio, Servicios, Nosotros, Contacto</li>
+              <li class="feat-yes">Blog o sección de noticias</li>
+              <li class="feat-yes">SEO avanzado y velocidad optimizada</li>
+              <li class="feat-yes">Integración con Google Analytics</li>
+              <li class="feat-yes">Panel de administración CMS</li>
+            </ul>
+            <a href="#contacto" class="plan-cta plan-cta--primary">Cotizar</a>
+          </div>
+        </article>
+
+        <!-- E-Commerce -->
+        <article class="plan-card" role="listitem">
+          <div class="plan-card-inner">
+            <div class="plan-header">
+              <span class="plan-badge">E-Commerce</span>
+              <p class="plan-tagline">Tu tienda 24/7</p>
+              <div class="plan-price">
+                <span class="plan-amount">$9,000</span>
+                <span class="plan-unit">MXN · pago único</span>
+              </div>
+            </div>
+            <p class="plan-desc">
+              Tu sucursal digital siempre abierta. Catálogo, pasarela de pagos
+              y gestión de inventario para escalar tus ventas.
+            </p>
+            <ul class="plan-features">
+              <li class="feat-yes">Catálogo de productos ilimitado</li>
+              <li class="feat-yes">Pasarela de pagos (Stripe / MercadoPago)</li>
+              <li class="feat-yes">Gestión de inventario y pedidos</li>
+              <li class="feat-yes">Panel de administración CMS</li>
+              <li class="feat-yes">SEO para e-commerce</li>
+            </ul>
+            <a href="#contacto" class="plan-cta plan-cta--ghost">Cotizar</a>
+          </div>
+        </article>
+
+      </div><!-- /plans-grid web -->
+
+      <!-- Consideraciones técnicas -->
+      <div class="web-notes">
+        <div class="web-notes-header">
+          <span class="web-notes-icon" aria-hidden="true">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+          <h4 class="web-notes-title">Consideraciones Técnicas y Transparencia</h4>
+        </div>
+        <p class="web-notes-intro">Para garantizar un despliegue exitoso y fluido de tu proyecto web, establecemos las siguientes bases operativas:</p>
+        <ul class="web-notes-list">
+          <li>
+            <strong>Dominio web:</strong> Es un costo adicional sujeto a disponibilidad. Te ayudaremos a encontrar el mejor nombre al precio ideal.
+          </li>
+          <li>
+            <strong>Gestión y accesos:</strong> Puedes administrar tu dominio o delegarlo a nosotros. Si lo administras tú, solo requeriremos acceso temporal a la configuración para conectar el sitio.
+          </li>
+          <li>
+            <strong>Materiales y ajustes:</strong> Tu paquete incluye 2 rondas de revisión. Para agilizar el desarrollo, necesitaremos tus textos y logotipo antes de arrancar.
+          </li>
+          <li>
+            <strong>Seguridad y renovaciones:</strong> Entregamos tu sitio protegido con certificado de seguridad (HTTPS). A partir del segundo año, aplicará un costo de renovación transparente por hosting, soporte y dominio.
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /ppanel-web -->
+
+    <!-- ════════════════════════════════════════════════════════════
+         PANEL 3 — INGENIERÍA AVANZADA
+    ════════════════════════════════════════════════════════════ -->
+    <div
+      id="ppanel-corp"
+      role="tabpanel"
+      aria-labelledby="ptab-corp"
+      class="pricing-panel"
+    >
+
+      <!-- Encabezado ejecutivo -->
+      <div class="corp-hero">
+        <div class="corp-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M8.504 9.426l3 -1.714a1 1 0 0 1 .992 0l3 1.714a1 1 0 0 1 .504 .868v3.411a1 1 0 0 1 -.504 .868l-3 1.715a1 1 0 0 1 -.992 0l-3 -1.715a1 1 0 0 1 -.504 -.868v-3.41a1 1 0 0 1 .504 -.869" />
+            <path d="M15.75 9.964l-3.75 2.036" />
+            <path d="M12 12l-3.75 -2.036" />
+            <path d="M12 12v4.071" />
+            <path d="M3 7v-2a2 2 0 0 1 2 -2h2" />
+            <path d="M3 17v2a2 2 0 0 0 2 2h2" />
+            <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+            <path d="M17 21h2a2 2 0 0 0 2 -2v-2" />
+          </svg>
+        </div>
+        <h3 class="corp-title">Soluciones Corporativas y Proyectos a la Medida</h3>
+        <p class="corp-intro">
+          No ofrecemos "soluciones de caja". Desarrollamos la arquitectura tecnológica
+          y los modelos de automatización que tu empresa necesita para escalar.
+        </p>
+      </div>
+
+      <!-- Bloques de capacidades -->
+      <div class="corp-blocks">
+
+        <!-- Bloque Arquitectura -->
+        <div class="corp-block">
+          <div class="corp-block-label">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            Arquitectura y Software
+          </div>
+          <h4 class="corp-block-title">Desarrollo a la Medida</h4>
+          <p class="corp-block-desc">
+            Construimos el motor de tu operación. Desde plataformas robustas
+            (ERPs, Gestores Documentales) hasta APIs seguras para interconectar
+            tus sistemas actuales y bases de datos preparadas para alto volumen.
+          </p>
+        </div>
+
+        <!-- Bloque IA -->
+        <div class="corp-block">
+          <div class="corp-block-label">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+            Automatización e IA
+          </div>
+          <h4 class="corp-block-title">Eficiencia Inteligente</h4>
+          <p class="corp-block-desc">
+            Reduce el error humano y acelera procesos mediante scripts a la medida.
+            Implementamos IA Generativa y Búsqueda Inteligente (RAG) adaptada a los
+            datos de tu organización para consultas conversacionales inmediatas.
+          </p>
+        </div>
+
+      </div><!-- /corp-blocks -->
+
+      <!-- Proceso de ingeniería -->
+      <div class="corp-process">
+        <div class="corp-process-header">
+          <p class="corp-process-label">Inversión: Cotización por Proyecto</p>
+          <p class="corp-process-desc">
+            Dado el nivel de especialización, estructuramos tu desarrollo en tres fases claras:
+          </p>
+        </div>
+        <ol class="corp-phases">
+          <li class="corp-phase">
+            <span class="corp-phase-num">01</span>
+            <div>
+              <strong class="corp-phase-title">Discovery — Consultoría inicial</strong>
+              <p>Analizamos tus cuellos de botella y definimos el objetivo comercial del sistema.</p>
+            </div>
+          </li>
+          <li class="corp-phase">
+            <span class="corp-phase-num">02</span>
+            <div>
+              <strong class="corp-phase-title">Arquitectura</strong>
+              <p>Diseñamos el mapa tecnológico, las herramientas y las fases.</p>
+            </div>
+          </li>
+          <li class="corp-phase">
+            <span class="corp-phase-num">03</span>
+            <div>
+              <strong class="corp-phase-title">Desarrollo</strong>
+              <p>Ejecución con cronograma transparente antes de la primera línea de código.</p>
+            </div>
+          </li>
+        </ol>
+
+        <!-- CTA principal -->
+        <div class="corp-cta-wrapper">
+          <a href="#contacto" class="nav-cta">
+            Agendar Consultoría Técnica
+          </a>
+          <p class="corp-cta-note">Sin costo · Sin compromiso · Primera sesión estratégica gratuita</p>
+        </div>
+
+      </div><!-- /corp-process -->
+
+    </div><!-- /ppanel-corp -->
+
+  </div><!-- /container -->
+</section>
+
+<script>
+  // ── Cambio de pestañas con animación fadeInUp ───────────────────
+  const ptabs   = document.querySelectorAll<HTMLButtonElement>('.pricing-tab-btn');
+  const ppanels = document.querySelectorAll<HTMLElement>('.pricing-panel');
+
+  ptabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      ptabs.forEach(t => { t.setAttribute('aria-selected', 'false'); t.classList.remove('is-active'); });
+      ppanels.forEach(p => {
+        p.classList.remove('is-active');
+        // Remueve la animación para que se pueda relanzar
+        p.style.animation = 'none';
+      });
+      tab.setAttribute('aria-selected', 'true');
+      tab.classList.add('is-active');
+      const target = document.getElementById(tab.getAttribute('aria-controls')!);
+      if (target) {
+        target.classList.add('is-active');
+        // Forzar reflow para que la animación se relance
+        void target.offsetWidth;
+        target.style.animation = '';
+      }
+    });
+  });
+</script>
+
+<style>
+/* ─────────────────────────────────────────────────────────────
+   Layout & Atmosphere
+───────────────────────────────────────────────────────────── */
+.pricing-section {
+  position: relative;
+  padding: 96px 0 120px;
+  overflow: hidden;
+}
+
+.pricing-atmosphere {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(84.6% 73.49% at 50% 26.51%, rgba(4, 63, 150, 0.45), rgba(6, 18, 37, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Header
+───────────────────────────────────────────────────────────── */
+.pricing-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 56px;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.073em;
+  text-transform: uppercase;
+  color: var(--color-azure-glow, #0088ff);
+  margin: 0 0 12px;
+}
+
+.pricing-header h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.11px;
+  color: var(--color-snow, #fff);
+  margin: 0 0 16px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Tabs (mismo patrón que Services)
+───────────────────────────────────────────────────────────── */
+.pricing-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--color-graphite-500, #363739);
+  padding-bottom: 0;
+}
+
+.pricing-tab-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 20px 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-slate-300, #6a6b6c);
+  transition: color 200ms ease;
+}
+
+.pricing-tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-azure-glow, #0088ff);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.pricing-tab-btn.is-active,
+.pricing-tab-btn:hover {
+  color: var(--color-snow, #fff);
+}
+
+.pricing-tab-btn.is-active::after {
+  opacity: 1;
+}
+
+.tab-name {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tab-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-slate-300, #6a6b6c);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Panel visibility
+───────────────────────────────────────────────────────────── */
+.pricing-panel {
+  display: none;
+}
+
+.pricing-panel.is-active {
+  display: block;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.panel-intro {
+  font-size: 15px;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0 0 40px;
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Plans Grid
+───────────────────────────────────────────────────────────── */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Plan Card
+───────────────────────────────────────────────────────────── */
+.plan-card {
+  position: relative;
+  border-radius: 16px;
+  background: var(--color-deep-charcoal, #07080a);
+  border: 1px solid var(--color-graphite-500, #363739);
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.plan-card:hover {
+  border-color: var(--color-graphite-400, #454647);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 40px 8px;
+}
+
+/* Featured card override */
+.plan-card--featured {
+  border-color: rgba(0, 136, 255, 0.35);
+  background: linear-gradient(160deg, rgba(4, 63, 150, 0.14) 0%, var(--color-deep-charcoal, #07080a) 60%);
+  box-shadow:
+    rgba(255, 255, 255, 0.06) 0px 0px 0px 1px inset,
+    rgba(0, 88, 181, 0.12) 0px 0px 40px 8px;
+}
+
+.plan-card--featured:hover {
+  border-color: rgba(0, 136, 255, 0.6);
+  box-shadow:
+    rgba(255, 255, 255, 0.06) 0px 0px 0px 1px inset,
+    rgba(0, 88, 181, 0.22) 0px 0px 48px 12px;
+}
+
+.plan-card-inner {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Featured ribbon */
+.plan-featured-badge {
+  position: absolute;
+  top: -1px;
+  right: 20px;
+  background: var(--color-azure-core, #005bb5);
+  color: var(--color-snow, #fff);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 0 0 6px 6px;
+}
+
+/* Plan header */
+.plan-header {
+  margin-bottom: 16px;
+}
+
+.plan-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-slate-200, #9c9c9d);
+  background: var(--color-graphite-700, #111214);
+  border: 1px solid var(--color-graphite-500, #363739);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-bottom: 8px;
+}
+
+.plan-tagline {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-snow, #fff);
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.plan-amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-snow, #fff);
+  line-height: 1;
+  letter-spacing: -0.06px;
+}
+
+.plan-unit {
+  font-size: 12px;
+  color: var(--color-slate-300, #6a6b6c);
+}
+
+/* Plan description */
+.plan-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+
+/* Plan features */
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-slate-200, #9c9c9d);
+}
+
+.plan-features li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+  border-radius: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.feat-yes {
+  color: var(--color-slate-200, #9c9c9d);
+}
+
+.feat-yes::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none'%3E%3Ccircle cx='7' cy='7' r='7' fill='%23005BB5'/%3E%3Cpath d='M4 7l2 2 4-4' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.feat-no {
+  color: var(--color-slate-300, #6a6b6c);
+  text-decoration: line-through;
+  text-decoration-color: rgba(106, 107, 108, 0.5);
+}
+
+.feat-no::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none'%3E%3Ccircle cx='7' cy='7' r='7' fill='%23363739'/%3E%3Cpath d='M5 5l4 4M9 5l-4 4' stroke='%236a6b6c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Plan CTA */
+.plan-cta {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+  margin-top: auto;
+}
+
+.plan-cta--primary {
+  background: var(--color-ash-50, #e6e6e6);
+  color: #2f3031;
+  border: 1px solid transparent;
+}
+
+.plan-cta--primary:hover {
+  background: var(--color-snow, #fff);
+}
+
+.plan-cta--ghost {
+  background: transparent;
+  color: var(--color-slate-200, #9c9c9d);
+  border: 1px solid var(--color-graphite-400, #454647);
+}
+
+.plan-cta--ghost:hover {
+  border-color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-snow, #fff);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Comparison Table
+───────────────────────────────────────────────────────────── */
+.compare-wrapper {
+  margin-bottom: 56px;
+}
+
+.compare-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-snow, #fff);
+  margin: 0 0 20px;
+}
+
+.compare-scroll {
+  overflow-x: auto;
+  border-radius: 11px;
+  border: 1px solid var(--color-graphite-500, #363739);
+  box-shadow:
+    rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset,
+    rgba(0, 0, 0, 0.4) 0px 4px 40px 8px;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 560px;
+}
+
+.compare-table thead tr {
+  background: var(--color-graphite-700, #111214);
+  border-bottom: 1px solid var(--color-graphite-500, #363739);
+}
+
+.compare-table th {
+  padding: 14px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-slate-200, #9c9c9d);
+  text-align: center;
+}
+
+.compare-table th.compare-feature-col {
+  text-align: left;
+  color: var(--color-slate-300, #6a6b6c);
+}
+
+.compare-table tbody tr {
+  border-bottom: 1px solid rgba(54, 55, 57, 0.5);
+  background: var(--color-deep-charcoal, #07080a);
+  transition: background 150ms ease;
+}
+
+.compare-table tbody tr:hover {
+  background: var(--color-graphite-700, #111214);
+}
+
+.compare-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.compare-table td {
+  padding: 14px 20px;
+  color: var(--color-slate-200, #9c9c9d);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.compare-table td:first-child {
+  text-align: left;
+  color: var(--color-snow, #fff);
+  font-weight: 500;
+}
+
+/* Featured column highlight */
+.col-featured {
+  background: rgba(0, 91, 181, 0.08);
+  border-left: 1px solid rgba(0, 88, 255, 0.18);
+  border-right: 1px solid rgba(0, 88, 255, 0.18);
+}
+
+/* Check/Cross icons */
+.ci {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.ci--yes {
+  background: rgba(0, 91, 181, 0.2);
+}
+
+.ci--yes::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'%3E%3Cpath d='M2 5l2.5 2.5 3.5-4' stroke='%230088FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.ci--no {
+  background: rgba(54, 55, 57, 0.5);
+}
+
+.ci--no::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none'%3E%3Cpath d='M3 3l4 4M7 3l-4 4' stroke='%236a6b6c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.ci-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-slate-200, #9c9c9d);
+}
+
+.ci-text--muted {
+  color: var(--color-slate-300, #6a6b6c);
+  font-size: 11px;
+}
+
+/* Price row */
+.compare-price-row td {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-snow, #fff);
+  border-top: 1px solid var(--color-graphite-500, #363739);
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.compare-price-row td:first-child {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-slate-300, #6a6b6c);
+}
+
+.compare-legal {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-slate-300, #6a6b6c);
+  margin-top: 12px;
+  padding: 0 4px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Discounts
+───────────────────────────────────────────────────────────── */
+.discounts-block {
+  border-radius: 16px;
+  border: 1px solid var(--color-graphite-500, #363739);
+  background: var(--color-deep-charcoal, #07080a);
+  padding: 32px;
+  box-shadow: rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset;
+}
+
+.discounts-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.discounts-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-snow, #fff);
+  margin: 0;
+}
+
+.discounts-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-azure-frost, #d1e8ff);
+  background: rgba(0, 91, 181, 0.2);
+  border: 1px solid rgba(0, 91, 181, 0.3);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.discounts-desc {
+  font-size: 14px;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0 0 24px;
+}
+
+.discounts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.discount-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 16px;
+  border-radius: 11px;
+  background: var(--color-graphite-700, #111214);
+  border: 1px solid var(--color-graphite-500, #363739);
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 1.5px 0.5px 2.5px, rgb(0, 0, 0) 0px 0px 0.5px 1px, rgba(0, 0, 0, 0.25) 0px 2px 1px 1px inset, rgba(255, 255, 255, 0.2) 0px 1px 1px 1px inset;
+  transition: border-color 200ms ease;
+}
+
+.discount-item:hover {
+  border-color: var(--color-graphite-400, #454647);
+}
+
+.discount-item--highlight {
+  border-color: rgba(0, 88, 255, 0.3);
+  background: linear-gradient(160deg, rgba(4, 63, 150, 0.18) 0%, var(--color-graphite-700, #111214) 70%);
+}
+
+.discount-item--highlight:hover {
+  border-color: rgba(0, 88, 255, 0.5);
+}
+
+.discount-pct {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-snow, #fff);
+  letter-spacing: -0.06px;
+  line-height: 1;
+}
+
+.discount-item--highlight .discount-pct {
+  color: var(--color-azure-frost, #d1e8ff);
+}
+
+.discount-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-slate-300, #6a6b6c);
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Web panel — base benefits
+───────────────────────────────────────────────────────────── */
+.web-base-benefits {
+  background: var(--color-graphite-700, #111214);
+  border: 1px solid var(--color-graphite-500, #363739);
+  border-radius: 11px;
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  box-shadow: rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset;
+}
+
+.web-base-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-azure-glow, #0088ff);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.web-base-list {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.web-base-list li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--color-slate-200, #9c9c9d);
+  padding: 0 24px;
+  border-right: 1px solid var(--color-graphite-500, #363739);
+}
+
+.web-base-list li:last-child {
+  border-right: none;
+}
+
+.wb-icon {
+  display: inline-flex;
+  color: var(--color-azure-glow, #0088ff);
+  opacity: 0.8;
+}
+
+/* ─── Consideraciones técnicas ────────────────────────────── */
+.web-notes {
+  margin-top: 48px;
+  border: 1px solid rgba(0, 88, 255, 0.22);
+  border-left: 3px solid var(--color-azure-core, #005bb5);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(4, 63, 150, 0.08) 0%, rgba(7, 8, 10, 0.5) 100%);
+  padding: 28px 32px;
+  box-shadow: rgba(0, 88, 181, 0.07) 0px 4px 24px 0px;
+}
+
+.web-notes-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.web-notes-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-azure-glow, #0088ff);
+}
+
+.web-notes-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-snow, #fff);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.web-notes-intro {
+  font-size: 14px;
+  color: var(--color-slate-200, #9c9c9d);
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.web-notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.web-notes-list li {
+  font-size: 14px;
+  color: var(--color-slate-200, #9c9c9d);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+
+.web-notes-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-azure-core, #005bb5);
+}
+
+.web-notes-list li strong {
+  color: var(--color-azure-frost, #d1e8ff);
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   Panel 3 — Ingeniería Corporativa
+───────────────────────────────────────────────────────────── */
+.corp-hero {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.corp-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(4, 63, 150, 0.25) 0%, rgba(7, 8, 10, 0.6) 100%);
+  border: 1px solid rgba(0, 88, 255, 0.2);
+  color: var(--color-azure-glow, #0088ff);
+  margin-bottom: 24px;
+  box-shadow:
+    rgba(0, 88, 255, 0.15) 0px 0px 40px 8px,
+    rgba(255, 255, 255, 0.06) 0px 0px 0px 1px inset;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.corp-icon svg {
+  transition: color 0.35s ease, filter 0.35s ease;
+}
+
+@keyframes corp-icon-pulse {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(0, 136, 255, 0.7)); }
+  50%       { filter: drop-shadow(0 0 12px rgba(0, 136, 255, 1)) drop-shadow(0 0 22px rgba(0, 91, 181, 0.55)); }
+}
+
+.pricing-panel:hover .corp-icon {
+  border-color: rgba(0, 88, 255, 0.55);
+  background: linear-gradient(145deg, rgba(4, 63, 150, 0.45) 0%, rgba(7, 8, 10, 0.7) 100%);
+  box-shadow:
+    rgba(0, 88, 255, 0.35) 0px 0px 48px 12px,
+    rgba(255, 255, 255, 0.08) 0px 0px 0px 1px inset;
+}
+
+.pricing-panel:hover .corp-icon svg {
+  color: var(--color-azure-frost, #d1e8ff);
+  animation: corp-icon-pulse 2s ease-in-out infinite;
+}
+
+.corp-title {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 600;
+  color: var(--color-snow, #fff);
+  line-height: 1.2;
+  letter-spacing: -0.06px;
+  margin: 0 0 16px;
+}
+
+.corp-intro {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0;
+}
+
+/* Capacidades */
+.corp-blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.corp-block {
+  background: var(--color-deep-charcoal, #07080a);
+  border: 1px solid var(--color-graphite-500, #363739);
+  border-radius: 16px;
+  padding: 28px;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+  box-shadow: rgba(255, 255, 255, 0.04) 0px 1px 0px 0px inset;
+}
+
+.corp-block:hover {
+  border-color: rgba(0, 88, 255, 0.25);
+  box-shadow:
+    rgba(255, 255, 255, 0.04) 0px 1px 0px 0px inset,
+    rgba(0, 88, 181, 0.08) 0px 0px 32px 4px;
+}
+
+.corp-block-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-azure-glow, #0088ff);
+  margin-bottom: 10px;
+}
+
+.corp-block-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-snow, #fff);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.corp-block-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0;
+}
+
+/* Proceso */
+.corp-process {
+  background: var(--color-deep-charcoal, #07080a);
+  border: 1px solid var(--color-graphite-500, #363739);
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: rgba(255, 255, 255, 0.05) 0px 1px 0px 0px inset;
+}
+
+.corp-process-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-azure-frost, #d1e8ff);
+  background: rgba(0, 91, 181, 0.18);
+  border: 1px solid rgba(0, 91, 181, 0.28);
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin: 0 0 12px;
+}
+
+.corp-process-desc {
+  font-size: 15px;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0 0 28px;
+  line-height: 1.55;
+}
+
+.corp-phases {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  counter-reset: none;
+}
+
+.corp-phase {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-graphite-500, #363739);
+}
+
+.corp-phase:last-child {
+  border-bottom: none;
+}
+
+.corp-phase-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 91, 181, 0.15);
+  border: 1px solid rgba(0, 88, 255, 0.22);
+  color: var(--color-azure-glow, #0088ff);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.corp-phase strong.corp-phase-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-snow, #fff);
+  margin-bottom: 4px;
+}
+
+.corp-phase p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-slate-200, #9c9c9d);
+  margin: 0;
+}
+
+/* CTA corporativo */
+.corp-cta-wrapper {
+  text-align: center;
+  padding-top: 8px;
+}
+
+.corp-cta-note {
+  font-size: 12px;
+  color: var(--color-slate-300, #6a6b6c);
+  margin: 12px 0 0;
+  letter-spacing: 0.03em;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .discounts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pricing-tabs {
+    flex-direction: column;
+    align-items: stretch;
+    border-bottom: none;
+    gap: 8px;
+  }
+
+  .pricing-tab-btn {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--color-graphite-500, #363739);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .pricing-tab-btn::after {
+    display: none;
+  }
+
+  .pricing-tab-btn.is-active {
+    border-color: rgba(0, 88, 255, 0.4);
+    background: rgba(4, 63, 150, 0.1);
+  }
+
+  .tab-sub {
+    display: none;
+  }
+
+  .web-base-benefits {
+    align-items: center;
+  }
+
+  .corp-blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .corp-process {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-section {
+    padding: 72px 0 96px;
+  }
+
+  .discounts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .discounts-block {
+    padding: 24px 20px;
+  }
+
+  .plan-card-inner {
+    padding: 22px 20px;
+  }
+}
+</style>

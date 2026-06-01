@@ -14,6 +14,7 @@ import Header       from '../components/Header.astro';
 import Hero         from '../components/Hero.astro';
 import About        from '../components/About.astro';
 import Services     from '../components/Services.astro';
+import Pricing      from '../components/Pricing.astro';
 import Contact      from '../components/Contact.astro';
 import Footer       from '../components/Footer.astro';
 
@@ -49,7 +50,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
     <!-- Sección 3: Servicios -->
     <Services />
 
-    <!-- Sección 4: Contacto -->
+    <!-- Sección 4: Paquetes -->
+    <Pricing />
+
+    <!-- Sección 5: Contacto -->
     <Contact />
   </main>
 
