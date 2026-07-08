@@ -1,16 +1,20 @@
 ---
 /**
  * components/Contact.astro
- * Sección de contacto — formulario de captura de leads + datos directos.
+ * Sección de contacto — tarjetas con especialistas y canales directos.
  *
- * El formulario NO tiene action real todavía; se conectará a un endpoint
- * de Astro (src/pages/api/contact.ts) o a un servicio como Resend / Formspree.
+ * Estructura minimalista sin intermediarios. Los usuarios pueden contactar
+ * directamente por email, teléfono, WhatsApp o LinkedIn.
  *
  * Accesibilidad:
- *  - Cada <label> asociado a su <input> por htmlFor/id.
- *  - Campos obligatorios marcados con aria-required="true".
- *  - Mensaje de error anticipado con aria-describedby.
+ *  - Enlaces diretos con tel:, mailto:, https://wa.me/, https://linkedin.com/
+ *  - Íconos con aria-hidden (decorativos) o aria-label cuando lo requieran.
  */
+
+import Mail from './icons/mail.svg?raw';
+import Phone from './icons/phone.svg?raw';
+import WhatsApp from './icons/whatsapp.svg?raw';
+import Linkedin from './icons/linkedin.svg?raw';
 ---
 
 <section
@@ -22,178 +26,111 @@
 
     <!-- H2 — Título de sección -->
     <h2 id="contact-heading">
-      ¿Listo para empezar? Cuéntanos tu proyecto
+      ¿Listo para tu evolución tecnológica? Hablemos.
     </h2>
 
     <p class="section-subtitle">
-      Responderemos en menos de 24 horas hábiles. La primera consulta es gratuita.
+      Sin formularios automatizados ni intermediarios. Contacta directamente a nuestros especialistas para agendar tu consultoría o resolver cualquier emergencia operativa.
     </p>
 
-    <div class="contact-layout">
+    <!-- Grid de tarjetas de contacto (2 especialistas) -->
+    <div class="contact-cards-grid">
 
-      <!-- ── Formulario de captura de leads ──────────────────────────── -->
-      <div class="contact-form-wrapper">
-        <h3>Envíanos un mensaje</h3>
+      <!-- Tarjeta 1: Porfirio A Rivera C -->
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <h3 class="contact-card-name">Porfirio A Rivera C</h3>
+          <p class="contact-card-role">Consultoría y Arquitectura de Sistemas</p>
+        </div>
 
-        <!--
-          method="POST" y action apuntarán al endpoint API de Astro
-          o a un servicio externo de formularios.
-        -->
-        <form
-          method="POST"
-          action="/api/contact"
-          novalidate
-          aria-label="Formulario de contacto"
-          class="contact-form"
-        >
-
-          <div class="form-group">
-            <label for="name">Nombre completo <span aria-hidden="true">*</span></label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              autocomplete="name"
-              aria-required="true"
-              placeholder="Ej. María García"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              autocomplete="email"
-              aria-required="true"
-              placeholder="correo@empresa.com"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="company">Empresa (opcional)</label>
-            <input
-              type="text"
-              id="company"
-              name="company"
-              autocomplete="organization"
-              placeholder="Nombre de tu empresa"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="service">Servicio de interés</label>
-            <select id="service" name="service">
-              <option value="">Selecciona una opción</option>
-              <option value="helpdesk">Mesa de Ayuda</option>
-              <option value="network">Infraestructura de Redes (LAN &amp; Wireless)</option>
-              <option value="security">Ciberseguridad y Protección</option>
-              <option value="maintenance">Mantenimiento Preventivo</option>
-              <option value="pos">Sistemas Administrativos y POS (ASPEL)</option>
-              <option value="other">Otro / No sé aún</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Cuéntanos tu proyecto <span aria-hidden="true">*</span></label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              aria-required="true"
-              placeholder="Describe brevemente qué necesitas y cuál es tu reto actual…"
-            ></textarea>
-          </div>
-
-          <!-- Honeypot anti-spam: oculto para humanos, visible para bots -->
-          <div class="visually-hidden" aria-hidden="true">
-            <label for="website">No rellenar (honeypot)</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-full">
-            Enviar mensaje
-          </button>
-
-          <p class="form-legal">
-            Al enviar este formulario aceptas nuestra
-            <a href="/privacidad">Política de Privacidad</a>.
-            No enviamos spam.
-          </p>
-
-        </form>
+        <ul class="contact-links">
+          <li>
+            <a href="mailto:andres.rivera@alexandriastudio.cloud" class="contact-link">
+              <span class="contact-icon" aria-hidden="true" set:html={Mail} />
+              <span class="contact-text">andres.rivera@alexandriastudio.cloud</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+525518505071" class="contact-link">
+              <span class="contact-icon" aria-hidden="true" set:html={Phone} />
+              <span class="contact-text">+52 55 1850 5071</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/525518505071"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              aria-label="Chatear por WhatsApp"
+            >
+              <span class="contact-icon" aria-hidden="true" set:html={WhatsApp} />
+              <span class="contact-text">Chatear por WhatsApp</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/porfirio-rivera"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              aria-label="Conectar en LinkedIn"
+            >
+              <span class="contact-icon" aria-hidden="true" set:html={Linkedin} />
+              <span class="contact-text">Conectar en LinkedIn</span>
+            </a>
+          </li>
+        </ul>
       </div>
 
-      <!-- ── Información de contacto directo ────────────────────────── -->
-      <aside class="contact-info" aria-label="Información de contacto directo">
+      <!-- Tarjeta 2: Jesús Arellano Flores -->
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <h3 class="contact-card-name">Jesús Arellano Flores</h3>
+          <p class="contact-card-role">Liderazgo Técnico e Infraestructura</p>
+        </div>
 
-        <h3>Otros canales de contacto</h3>
-
-        <p class="contact-name">Porfirio A Rivera C</p>
-
-        <address>
-          <ul class="contact-list">
-            <li>
-              <!-- rel="noopener noreferrer" en target="_blank" por seguridad -->
-              <a href="mailto:andres.rivera@alexandriastudio.cloud">
-                andres.rivera@alexandriastudio.cloud
-              </a>
-            </li>
-            <li>
-              <a href="tel:+525518505071">+52 55 1850 5071</a>
-            </li>
-            <li>
-              <a
-                href="https://wa.me/525518505071"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Contactar por WhatsApp"
-              >
-                WhatsApp: 55 1850 5071
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://alexandriastudio.cloud"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                alexandriastudio.cloud
-              </a>
-            </li>
-            <li>Ciudad de México, México</li>
-          </ul>
-        </address>
-
-        <!-- Redes sociales -->
-        <nav aria-label="Redes sociales de Alexandria Studio">
-          <ul class="social-links">
-            <li>
-              <a
-                href="https://www.linkedin.com/company/alexandria-studio"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn de Alexandria Studio"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/alexandria-studio"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub de Alexandria Studio"
-              >
-                GitHub
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-      </aside>
+        <ul class="contact-links">
+          <li>
+            <a href="mailto:jesus.arellano@alexandriastudio.cloud" class="contact-link">
+              <span class="contact-icon" aria-hidden="true" set:html={Mail} />
+              <span class="contact-text">jesus.arellano@alexandriastudio.cloud</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+525615912984" class="contact-link">
+              <span class="contact-icon" aria-hidden="true" set:html={Phone} />
+              <span class="contact-text">+52 56 1591 2984</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/525615912984"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              aria-label="Chatear por WhatsApp"
+            >
+              <span class="contact-icon" aria-hidden="true" set:html={WhatsApp} />
+              <span class="contact-text">Chatear por WhatsApp</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/jesus-arellano"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-link"
+              aria-label="Conectar en LinkedIn"
+            >
+              <span class="contact-icon" aria-hidden="true" set:html={Linkedin} />
+              <span class="contact-text">Conectar en LinkedIn</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
     </div>
+
   </div>
 </section>
