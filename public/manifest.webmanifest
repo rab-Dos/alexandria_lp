@@ -1,0 +1,24 @@
+{
+  "name": "Alexandria Studio",
+  "short_name": "Alexandria",
+  "description": "Consultoría tecnológica en Ciudad de México — Mesa de Ayuda, Redes, Ciberseguridad, Desarrollo y automatización.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#040506",
+  "theme_color": "#005BB5",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "/Alexandria.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Alexandria.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

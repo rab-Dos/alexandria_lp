@@ -1,0 +1,79 @@
+---
+// SectionDivider.astro — separador animado entre secciones principales
+---
+
+<div class="section-divider" aria-hidden="true">
+  <div class="divider-glow"></div>
+</div>
+
+<style>
+  .section-divider {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    overflow: visible;
+    isolation: isolate;
+  }
+
+  .divider-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-azure-core, #005BB5) 20%,
+      var(--color-azure-glow, #0088FF) 50%,
+      var(--color-azure-core, #005BB5) 80%,
+      transparent 100%
+    );
+    background-size: 300% 100%;
+    animation: divider-sweep 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    opacity: 0;
+  }
+
+  /* Dispara la animación solo cuando el separador entra al viewport */
+  @media (prefers-reduced-motion: no-preference) {
+    .section-divider:not(.is-visible) .divider-glow {
+      animation-play-state: paused;
+    }
+
+    .section-divider.is-visible .divider-glow {
+      opacity: 1;
+      animation-play-state: running;
+    }
+  }
+
+  /* Sin animación cuando el usuario prefiere menos movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .divider-glow {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--color-azure-core, #005BB5) 50%,
+        transparent 100%
+      );
+      opacity: 0.35;
+      animation: none;
+    }
+  }
+
+  @keyframes divider-sweep {
+    0%   { background-position: 200% 0; opacity: 0; }
+    10%  { opacity: 0.7; }
+    50%  { background-position: 0% 0;   opacity: 0.9; }
+    90%  { opacity: 0.7; }
+    100% { background-position: -200% 0; opacity: 0; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add('is-visible');
+      }),
+      { threshold: 0.5 }
+    );
+    document.querySelectorAll('.section-divider').forEach((el) => observer.observe(el));
+  })();
+</script>

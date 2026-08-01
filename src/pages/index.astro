@@ -17,6 +17,7 @@ import Services     from '../components/Services.astro';
 import Pricing      from '../components/Pricing.astro';
 import Contact      from '../components/Contact.astro';
 import Footer       from '../components/Footer.astro';
+import SectionDivider from '../components/SectionDivider.astro';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 ---
@@ -44,14 +45,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
     <!-- Sección 1: Hero — contiene el único <h1> de la página -->
     <Hero />
 
+    <SectionDivider />
+
     <!-- Sección 2: Nosotros -->
     <About />
+
+    <SectionDivider />
 
     <!-- Sección 3: Servicios -->
     <Services />
 
+    <SectionDivider />
+
     <!-- Sección 4: Paquetes -->
     <Pricing />
+
+    <SectionDivider />
 
     <!-- Sección 5: Contacto -->
     <Contact />

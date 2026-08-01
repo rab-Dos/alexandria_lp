@@ -1496,6 +1496,8 @@
     flex-direction: column;
     gap: 1.5rem;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    /* Necesario para que 1fr no se expanda por el min-content del email */
+    min-width: 0;
   }
 
   .contact-card:hover {
@@ -1571,6 +1573,9 @@
   .contact-text {
     font-size: 0.9375rem;
     line-height: 1.4;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    min-width: 0;
   }
 
   /* Responsive: grid a 1 columna en móviles */

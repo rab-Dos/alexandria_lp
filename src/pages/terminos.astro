@@ -1,0 +1,217 @@
+---
+/**
+ * pages/terminos.astro
+ * Terminos de Uso del sitio y los servicios de Alexandria Studio.
+ */
+import Layout from '../layouts/Layout.astro';
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const lastUpdated = '31 de julio de 2026';
+---
+
+<Layout
+  title="Terminos de Uso"
+  description="Terminos de Uso del sitio web y los servicios de Alexandria Studio. Consulta las condiciones que rigen la relacion entre Alexandria Studio y sus clientes."
+  canonicalURL={canonicalURL}
+>
+  <main class="legal-page container">
+
+    <div class="legal-header">
+      <a href="/" class="legal-back">&larr; Volver al inicio</a>
+      <h1>Terminos de Uso</h1>
+      <p class="legal-meta">Ultima actualizacion: {lastUpdated}</p>
+    </div>
+
+    <div class="legal-body">
+
+      <section>
+        <h2>1. Aceptacion de los terminos</h2>
+        <p>
+          Al acceder y utilizar el sitio web <strong>alexandriastudio.cloud</strong> (en adelante
+          "el Sitio") o contratar los servicios de <strong>Alexandria Studio</strong> (en adelante
+          "el Proveedor"), usted acepta quedar vinculado por los presentes Terminos de Uso. Si no
+          esta de acuerdo con alguna de estas condiciones, le pedimos no utilizar el Sitio ni
+          contratar nuestros servicios.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Descripcion del servicio</h2>
+        <p>
+          Alexandria Studio ofrece servicios de consultoria tecnologica que incluyen, sin limitarse a:
+        </p>
+        <ul>
+          <li>Mesa de Ayuda y soporte tecnico</li>
+          <li>Mantenimiento Preventivo de equipos</li>
+          <li>Infraestructura de Redes</li>
+          <li>Ciberseguridad y Proteccion de datos</li>
+          <li>Sistemas Administrativos y POS</li>
+          <li>Desarrollo Web y plataformas digitales</li>
+          <li>Software y Arquitectura a la Medida</li>
+          <li>Automatizacion e Inteligencia Artificial</li>
+        </ul>
+        <p>
+          Las condiciones especificas de cada servicio se establecen en el contrato o propuesta
+          comercial firmada entre las partes.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Uso permitido del Sitio</h2>
+        <p>El usuario se compromete a utilizar el Sitio unicamente para fines licitos y a no:</p>
+        <ul>
+          <li>Reproducir, distribuir o explotar comercialmente el contenido sin autorizacion expresa.</li>
+          <li>Intentar acceder a sistemas, servidores o bases de datos del Proveedor sin permiso.</li>
+          <li>Utilizar el Sitio para distribuir malware, spam o contenido ilegal.</li>
+          <li>Realizar scraping masivo o automatizado del contenido del Sitio.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Propiedad intelectual</h2>
+        <p>
+          Todo el contenido del Sitio — incluyendo textos, graficos, logotipos, codigo fuente y
+          diseno — es propiedad de Alexandria Studio o de sus licenciantes y esta protegido por
+          las leyes mexicanas e internacionales de propiedad intelectual.
+        </p>
+        <p>
+          El codigo desarrollado a medida para un cliente es propiedad del cliente una vez liquidado
+          el proyecto, salvo acuerdo contrario por escrito.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Limitacion de responsabilidad</h2>
+        <p>
+          El Proveedor no sera responsable por danos indirectos, incidentales o consecuentes
+          derivados del uso del Sitio o de los servicios, salvo dolo o negligencia grave comprobable.
+          La responsabilidad total del Proveedor frente a un cliente no excedera el monto pagado por
+          el servicio especifico en cuestion durante los ultimos tres meses.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Disponibilidad del Sitio</h2>
+        <p>
+          El Proveedor realizara esfuerzos razonables para mantener el Sitio disponible, pero no
+          garantiza disponibilidad ininterrumpida. El Sitio puede suspenderse temporalmente por
+          mantenimiento, actualizaciones o causas de fuerza mayor.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Modificaciones</h2>
+        <p>
+          El Proveedor se reserva el derecho de modificar estos Terminos de Uso en cualquier momento.
+          Los cambios entraran en vigor al ser publicados en esta URL. El uso continuado del Sitio
+          tras la publicacion implica la aceptacion de los nuevos terminos.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Ley aplicable y jurisdiccion</h2>
+        <p>
+          Los presentes Terminos se rigen por las leyes de los Estados Unidos Mexicanos. Cualquier
+          controversia sera sometida a la jurisdiccion de los tribunales competentes de la Ciudad
+          de Mexico, renunciando las partes a cualquier otro fuero que pudiere corresponderles.
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Contacto</h2>
+        <p>
+          Para cualquier consulta relacionada con estos Terminos, puede contactarnos en:
+          <a href="mailto:andres.rivera@alexandriastudio.cloud">andres.rivera@alexandriastudio.cloud</a>
+        </p>
+      </section>
+
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .legal-page {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    max-width: 780px;
+  }
+
+  .legal-header {
+    margin-bottom: 3rem;
+  }
+
+  .legal-back {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--color-slate-200);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .legal-back:hover {
+    color: var(--color-azure-glow);
+  }
+
+  .legal-header h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-snow);
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-meta {
+    font-size: 0.875rem;
+    color: var(--color-slate-300);
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+  }
+
+  .legal-body section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-graphite-500);
+  }
+
+  .legal-body section:last-child {
+    border-bottom: none;
+  }
+
+  .legal-body h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-snow);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-body p {
+    color: var(--color-slate-200);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-body ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    color: var(--color-slate-200);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-body a {
+    color: var(--color-azure-glow);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal-body a:hover {
+    color: var(--color-azure-frost);
+  }
+
+  .legal-body strong {
+    color: var(--color-snow);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Rastreadores de IA (control explícito)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://alexandriastudio.cloud/sitemap-index.xml

@@ -1,0 +1,36 @@
+# Alexandria Studio
+> Consultoría tecnológica en Ciudad de México, activa desde 2017.
+
+Alexandria Studio es el departamento de TI externo para empresas que necesitan
+infraestructura confiable, desarrollo ágil y continuidad operativa sin construir
+un equipo interno.
+
+## Servicios
+
+### Estabilidad Operativa
+- Mesa de Ayuda y soporte técnico presencial o remoto
+- Mantenimiento Preventivo de hardware y software
+- Infraestructura de Redes (diseño, instalación, administración)
+- Ciberseguridad y Protección de datos
+- Sistemas Administrativos y POS — soporte especializado en ASPEL
+
+### Ingeniería y Evolución
+- Desarrollo Web y plataformas digitales a medida
+- Arquitectura de Software y sistemas empresariales
+- Automatización de procesos e Inteligencia Artificial
+
+## Cobertura
+Ciudad de México y área metropolitana. Soporte remoto a nivel nacional.
+
+## Experiencia
+Fundada en 2017. Más de 8 años entregando continuidad tecnológica a PyMEs y
+empresas de mediano tamaño.
+
+## Contacto
+- Sitio web: https://alexandriastudio.cloud
+- Email general: contacto@alexandriastudio.cloud
+- Teléfono: +52 55 1850 5071
+
+## Equipo
+- Porfirio A Rivera C — Liderazgo Técnico, Infraestructura y Sistemas
+- Jesús Arellano Flores — Consultoría, Arquitectura de Desarrollo e IA

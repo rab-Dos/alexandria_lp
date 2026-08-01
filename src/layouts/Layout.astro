@@ -35,6 +35,7 @@ const siteName = 'Alexandria Studio';
     <!-- ─── Charset y Viewport ────────────────────────────────────────────── -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
 
     <!-- ─── Favicon ──────────────────────────────────────────────────────── -->
     <!-- SVG: navegadores modernos (Chrome 80+, Firefox, Edge) -->
@@ -45,12 +46,15 @@ const siteName = 'Alexandria Studio';
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Apple Touch Icon (pantalla de inicio en iOS/macOS) -->
     <link rel="apple-touch-icon" href="/Alexandria.png" />
+    <!-- Web App Manifest (PWA básica, controla apariencia en móviles) -->
+    <link rel="manifest" href="/manifest.webmanifest" />
 
     <!-- ─── Metadatos primarios SEO ──────────────────────────────────────── -->
     <title>{title} | {siteName}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
     <meta name="author" content={siteName} />
+    <meta name="theme-color" content="#005BB5" />
 
     <!-- ─── Canonical URL (evita contenido duplicado) ────────────────────── -->
     <!--
@@ -103,22 +107,47 @@ const siteName = 'Alexandria Studio';
     <!-- <link rel="dns-prefetch" href="https://plausible.io" /> -->
 
     <!-- ─── Structured Data (JSON-LD) ─────────────────────────────────────── -->
-    <!--
-      Schema.org Organization para que Google conozca la empresa.
-      Ajustar url, logo, contactPoint y sameAs con los datos reales.
-    -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["LocalBusiness", "ProfessionalService"],
         "name": "Alexandria Studio",
-        "url": "https://alexandriastudio.mx",
-        "logo": "https://alexandriastudio.mx/images/logo.svg",
-        "description": "Consultoría tecnológica: programación a medida, automatización de procesos y soporte técnico especializado.",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer support",
-          "availableLanguage": "Spanish"
+        "url": "https://alexandriastudio.cloud",
+        "logo": "https://alexandriastudio.cloud/Alexandria.svg",
+        "image": "https://alexandriastudio.cloud/Alexandria.png",
+        "description": "Consultoría tecnológica en Ciudad de México: Mesa de Ayuda, Infraestructura de Redes, Ciberseguridad, Desarrollo Web, Automatización e Inteligencia Artificial.",
+        "foundingDate": "2017",
+        "areaServed": {
+          "@type": "City",
+          "name": "Ciudad de México"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ciudad de México",
+          "addressCountry": "MX"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+52-55-1850-5071",
+            "contactType": "customer support",
+            "availableLanguage": "Spanish",
+            "email": "andres.rivera@alexandriastudio.cloud"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de TI",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mesa de Ayuda" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mantenimiento Preventivo" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Infraestructura de Redes" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ciberseguridad y Protección" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistemas Administrativos y POS" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desarrollo Web y Plataformas" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software y Arquitectura a la Medida" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automatización e Inteligencia Artificial" } }
+          ]
         },
         "sameAs": [
           "https://www.linkedin.com/company/alexandria-studio",
@@ -134,6 +163,92 @@ const siteName = 'Alexandria Studio';
   <body>
     <!-- Contenido principal inyectado por cada página -->
     <slot />
+
+    <!-- Botón volver al inicio — visible solo fuera del Hero -->
+    <button
+      id="back-to-top"
+      aria-label="Volver al inicio de la página"
+      title="Volver al inicio"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
+
+    <style is:global>
+      #back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 900;
+        width: 2.75rem;
+        height: 2.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-graphite-700, #111214);
+        border: 1px solid var(--color-graphite-500, #363739);
+        border-radius: 50%;
+        color: var(--color-slate-200, #9c9c9d);
+        cursor: pointer;
+        padding: 0;
+        opacity: 0;
+        transform: translateY(0.75rem);
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+      }
+
+      #back-to-top.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      #back-to-top:hover {
+        color: var(--color-azure-glow, #0088ff);
+        border-color: var(--color-azure-core, #005bb5);
+        box-shadow: 0 0 14px rgba(0, 136, 255, 0.25);
+      }
+
+      #back-to-top:active {
+        transform: translateY(2px);
+      }
+
+      @media (max-width: 480px) {
+        #back-to-top {
+          bottom: 1.25rem;
+          right: 1.25rem;
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+      }
+    </style>
+
+    <script is:inline>
+      (function () {
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+
+        btn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* Observa el Hero (#inicio); si sale del viewport muestra el botón */
+        const hero = document.getElementById('inicio');
+        if (hero) {
+          const obs = new IntersectionObserver(
+            ([entry]) => btn.classList.toggle('is-visible', !entry.isIntersecting),
+            { threshold: 0 }
+          );
+          obs.observe(hero);
+        } else {
+          /* Fallback para páginas sin Hero: scroll > 300px */
+          window.addEventListener('scroll', () => {
+            btn.classList.toggle('is-visible', window.scrollY > 300);
+          }, { passive: true });
+        }
+      })();
+    </script>
 
     <style is:global>
       :root {
