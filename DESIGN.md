@@ -15,7 +15,7 @@ Alexandria lives in near-total darkness — a #040506 void where UI surfaces eme
 | Graphite 600 | `#1b1c1e` | `--color-graphite-600` | Observed in other boxShadow, link boxShadow, badge backgroundColor. Extracted usage does not support a distinct primary control color. |
 | Graphite 500 | `#363739` | `--color-graphite-500` | Border color for dividers, shadow tones on elevated components |
 | Graphite 400 | `#454647` | `--color-graphite-400` | Subtle borders, muted button borders, body divider lines |
-| Slate 300 | `#6a6b6c` | `--color-slate-300` | Secondary body text, icon fills, disabled states |
+| Slate 300 | `#858687` | `--color-slate-300` | Secondary body text and muted labels. Minimum measured contrast is 5.14:1 on Graphite 700, meeting WCAG AA for normal text. |
 | Slate 200 | `#9c9c9d` | `--color-slate-200` | Tertiary text, muted links, placeholder-level labels |
 | Ash 50 | `#e6e6e6` | `--color-ash-50` | Primary download/CTA button background — warm near-white on black for maximum contrast without pure white aggression |
 | Snow | `#ffffff` | `--color-snow` | Primary text on dark surfaces, nav links, headline text, icon strokes, border highlights |
@@ -145,7 +145,7 @@ Transparent background, text #9C9C9D at 14px Inter weight 400, no border. Zero p
 ### Keyboard Key Element
 **Role:** Interactive keyboard shortcut visualizer
 
-Transparent background, border-radius 86px (oval pill shape for key tops), padding 20px all sides. Shadow stack: `rgba(0,0,0,0.4) 0px 1.5px 0.5px 2.5px, rgb(0,0,0) 0px 0px 0.5px 1px, rgba(0,0,0,0.25) 0px 2px 1px 1px inset, rgba(255,255,255,0.2) 0px 1px 1px 1px inset` — the inset white/black pair creates a physical bevel. Text #6A6B6C. Animates --key-bg-start-color and --key-bg-end-color on interaction.
+Transparent background, border-radius 86px (oval pill shape for key tops), padding 20px all sides. Shadow stack: `rgba(0,0,0,0.4) 0px 1.5px 0.5px 2.5px, rgb(0,0,0) 0px 0px 0.5px 1px, rgba(0,0,0,0.25) 0px 2px 1px 1px inset, rgba(255,255,255,0.2) 0px 1px 1px 1px inset` — the inset white/black pair creates a physical bevel. Text #858687. Animates --key-bg-start-color and --key-bg-end-color on interaction.
 
 ### Feature Card
 **Role:** Marketing feature section cards
@@ -180,7 +180,7 @@ Transparent background, text #9C9C9D at 13px Inter, border-radius 0px, padding 1
 ### Navigation Ring Link
 **Role:** Circular icon links in nav or social areas
 
-Transparent background, border-radius 86px (full oval), padding 20px, border rgba(255,255,255,0.06). Shadow `rgba(215,201,175,0.05) 0px 0px 20px 5px, rgba(215,201,175,0.05) 0px 0px 16px -7px` — a barely-perceptible warm bloom. Text #6A6B6C.
+Transparent background, border-radius 86px (full oval), padding 20px, border rgba(255,255,255,0.06). Shadow `rgba(215,201,175,0.05) 0px 0px 20px 5px, rgba(215,201,175,0.05) 0px 0px 16px -7px` — a barely-perceptible warm bloom. Text #858687.
 
 ### Azure Status Indicator
 **Role:** Colored dot or label for status signals inside product UI
@@ -233,6 +233,22 @@ Full-bleed radial gradient positioned at top-center: `radial-gradient(84.6% 73.4
 
 Primarily abstract photography — the hero uses extreme close-up macro shots of diagonal blue/cyan forms on black (appear to be keyboard key edges or geometric objects) treated with deep shadow and vivid blue-to-cyan chromatic saturation. These fill the full viewport bleed with no containment border or radius, bleeding edge-to-edge. Product screenshots appear in the second section as contained glass-panel mockups with 12px radius and dark UI chrome, simulating a live macOS window. No lifestyle photography, no human subjects. Decorative SVG graphics (blue/violet strokes) serve as background illustration layers behind feature sections at very low opacity.
 
+### Social Preview / Open Graph Artwork
+
+Social platforms control whether a shared link uses a large horizontal card or a compact thumbnail. Open Graph metadata can provide the asset and its dimensions, but it cannot force WhatsApp or another client to use the large layout. Social artwork must therefore remain legible in both formats.
+
+- Master canvas: `1200 × 630px` (`1.91:1`).
+- Keep the essential brand mark and primary message inside the centered `630 × 630px` safe area (`x: 285–915px`).
+- The square-safe composition must still work when reduced to approximately `120 × 120px`.
+- Prefer one short headline of three to six words. Do not place paragraphs, prices, legal text, or CTA buttons in the artwork.
+- Use large, high-weight text with at least `4.5:1` contrast against its immediate background.
+- Keep secondary decoration outside the safe area and treat it as expendable when cropped.
+- Use PNG or JPEG as the broad-compatibility primary resource when available; WebP may be supplied as an optimized alternative.
+- Keep the optimized social asset below `300 KB` where practical.
+- Provide an absolute HTTPS URL, declared width, height, MIME type, and meaningful `og:image:alt` text.
+- When artwork changes, publish it under a versioned filename or URL to avoid stale social-preview caches.
+- Validate both the complete landscape image and a centered square crop before deployment.
+
 ## Layout
 
 Max-width ~1200px centered on wide viewports, but hero section is full-bleed dark with no side constraints. Navigation is a fixed top bar: ~740px wide pill-shaped container with rounded edges (11px radius), dark #1B1C1 background, logo left + nav links center + CTA right. Seamless dark-to-dark flow with no visible dividers — depth changes come from radial gradient atmosphere shifts rather than alternating light/dark bands. Spacing between sections: ~80px vertical. 
@@ -242,7 +258,7 @@ Max-width ~1200px centered on wide viewports, but hero section is full-bleed dar
 **Quick Color Reference**
 - text primary: #FFFFFF
 - text secondary: #9C9C9D
-- text tertiary: #6A6B6C
+- text tertiary: #858687
 - background (canvas): #040506
 - surface (card): #07080a
 - border: #363739 (or rgba(255,255,255,0.06) for subtle)
@@ -254,7 +270,7 @@ Max-width ~1200px centered on wide viewports, but hero section is full-bleed dar
 
 1. **Hero Section**: Full-viewport dark section, background #040506 with radial-gradient(84.6% 73.49% at 50% 26.51%, rgba(4,63,150,0.7), rgba(6,18,37,0.25)) layered behind. Full-bleed abstract photography at top 60% of viewport. Centered headline at 64px Inter weight 600, #FFFFFF, letter-spacing -0.13em, line-height 1.0. Subheadline at 18px Inter weight 400, #9C9C9D, line-height 1.4. Two side-by-side buttons below: #E6E6E6 background, #2F3031 text, 8px radius, 8px 12px padding; second button transparent, #9C9C9D text, 8px radius, 1px solid #454647 border.
 
-2. **Feature Card Grid**: 3-column grid with 15px gap. Each card: transparent background, border-radius 16px, padding 24px, border 1px solid #222225. Icon area 32px × 32px, icon color #6A6B6C. Card title at 20px Inter weight 600, #FFFFFF. Body text at 14px Inter weight 400, #6A6B6C, line-height 1.57.
+2. **Feature Card Grid**: 3-column grid with 15px gap. Each card: transparent background, border-radius 16px, padding 24px, border 1px solid #222225. Icon area 32px × 32px, icon color #858687. Card title at 20px Inter weight 600, #FFFFFF. Body text at 14px Inter weight 400, #858687, line-height 1.57.
 
 3. **Navigation Bar**: Fixed top, background #07080a, border-bottom 1px solid #1b1c1e, max-width 1200px centered, height 52px. Logo left (blue flame icon #005BB5 + 'Alexandria' text #FFFFFF Inter 14px weight 600). Center nav links at 14px Inter weight 400, #9C9C9D, gap 24px. Right: 'Log in' text link #9C9C9D + Download button #E6E6E6 bg, #2F3031 text.
 
@@ -265,6 +281,54 @@ Max-width ~1200px centered on wide viewports, but hero section is full-bleed dar
 ## Animation Philosophy
 
 Transitions default to `ease` (not ease-in-out) at 200ms for micro-interactions (color, opacity, box-shadow) and 400ms for transforms. The custom easing `cubic-bezier(0.23, 1, 0.32, 1)` (outQuint) is used for entrances — fast attack, long settle — giving UI elements a snap-in character rather than a float-in. Keyboard key elements animate `--key-bg-start-color` and `--key-bg-end-color` CSS custom properties at 200ms, enabling per-key gradient transitions without class toggling. Named animations `page_fade-in-up` use upward translate + opacity for section reveals. Motion is expressive but never decorative-slow — nothing exceeds 700ms.
+
+## Accessibility Requirements — WCAG 2.2 AA
+
+Accessibility is part of the design system and must be preserved in every new component, page, and visual revision.
+
+### Perceivable
+
+- Normal text requires at least `4.5:1` contrast; large text and essential UI graphics require at least `3:1`.
+- Use `--color-slate-300: #858687` for muted text on dark surfaces. Do not restore `#6a6b6c` for normal text.
+- Body copy should default to at least `16px`. Text below `12px` is reserved for non-essential metadata and must remain usable at 200% zoom.
+- Every informative image requires concise alternative text. Decorative images, canvases, and icons use an empty alternative or `aria-hidden="true"`.
+- Information must not rely on color alone; pair state colors with text, shape, iconography, or pattern.
+
+### Operable
+
+- All actions must work with keyboard, pointer, and touch. Prefer native links, buttons, inputs, tables, and disclosure elements before adding ARIA.
+- Use a visible `3px` Azure Glow focus ring with `3px` offset. Never remove focus without providing an equal or stronger replacement.
+- Interactive targets must be at least `24 × 24px`; use `44 × 44px` as the preferred comfortable target.
+- Fixed navigation must not obscure focused or anchored content. Maintain appropriate `scroll-margin`.
+- Every page with repeated navigation includes a keyboard-visible skip link targeting the primary `<main>` landmark.
+- Tab interfaces support Arrow keys, Home, and End, and maintain roving `tabindex`, `aria-selected`, and panel visibility.
+- Expandable controls pair `aria-expanded` with `aria-controls`; collapsed content must use `hidden` so it cannot receive invisible focus.
+- Mobile navigation can be closed with Escape and returns focus to its trigger.
+
+### Understandable and Robust
+
+- Declare the document language and preserve a logical heading hierarchy with one primary `<h1>` per page.
+- Landmarks and repeated navigation regions require clear accessible names when more than one of the same type is present.
+- Use ARIA only to supplement native semantics. Accessible names must describe the action and update when the action changes.
+- Data tables include a caption, column headers, and `scope="row"` headers for each record.
+- Dynamic status or validation messages use an appropriate live region and must not be communicated by color alone.
+
+### Motion and Animation
+
+- Honor `prefers-reduced-motion: reduce` globally by disabling non-essential animation, smooth scrolling, parallax, and continuous decorative loops.
+- Decorative canvas and WebGL effects should not initialize when reduced motion is requested.
+- No automatically moving effect should compete with content for more than five seconds unless it can be paused or is essential.
+
+### Accessibility QA
+
+Before release, verify the experience using:
+
+1. Full keyboard navigation with visible focus and no keyboard traps.
+2. NVDA or another screen reader on Windows.
+3. Browser zoom at 200% and text-only zoom where available.
+4. Windows High Contrast Mode or forced-colors simulation.
+5. Reduced-motion preference enabled at operating-system level.
+6. Automated axe or Lighthouse checks as a supplement to manual testing.
 
 ## Gradient System
 
@@ -299,7 +363,7 @@ Rule: All section backgrounds must use transparent-to-transparent radial gradien
   --color-graphite-600: #1b1c1e;
   --color-graphite-500: #363739;
   --color-graphite-400: #454647;
-  --color-slate-300: #6a6b6c;
+  --color-slate-300: #858687;
   --color-slate-200: #9c9c9d;
   --color-ash-50: #e6e6e6;
   --color-snow: #ffffff;
@@ -430,7 +494,7 @@ Rule: All section backgrounds must use transparent-to-transparent radial gradien
   --color-graphite-600: #1b1c1e;
   --color-graphite-500: #363739;
   --color-graphite-400: #454647;
-  --color-slate-300: #6a6b6c;
+  --color-slate-300: #858687;
   --color-slate-200: #9c9c9d;
   --color-ash-50: #e6e6e6;
   --color-snow: #ffffff;
