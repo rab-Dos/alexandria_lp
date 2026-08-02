@@ -53,6 +53,11 @@
   const canvas  = document.getElementById('hero-canvas') as HTMLCanvasElement;
   const ctx     = canvas.getContext('2d')!;
   const section = canvas.closest('.hero-section') as HTMLElement;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    canvas.hidden = true;
+  } else {
 
   let width: number, height: number;
   let time = 0;
@@ -179,4 +184,5 @@
   }
 
   animate();
+  }
 </script>

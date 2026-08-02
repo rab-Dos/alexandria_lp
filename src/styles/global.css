@@ -14,7 +14,7 @@
   --color-graphite-600:  #1b1c1e;
   --color-graphite-500:  #363739;
   --color-graphite-400:  #454647;
-  --color-slate-300:     #6a6b6c;
+  --color-slate-300:     #858687;
   --color-slate-200:     #9c9c9d;
   --color-ash-50:        #e6e6e6;
   --color-snow:          #ffffff;
@@ -104,12 +104,69 @@
     height: auto;
     display: block;
   }
+
+  :focus-visible {
+    outline: 3px solid var(--color-azure-glow);
+    outline-offset: 3px;
+  }
+
+  :target,
+  :focus {
+    scroll-margin-top: 7rem;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
    COMPONENTES
    ═══════════════════════════════════════════════════════════ */
 @layer components {
+
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2000;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--color-snow);
+    color: var(--color-void-black);
+    font-weight: 700;
+    transform: translateY(-200%);
+    transition: transform 0.2s ease;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
 
   /* ─── Layout container ──────────────────────────────── */
   .container {
@@ -1364,20 +1421,7 @@
       transform  0.35s ease;
   }
 
-  /* Desktop con hover real: se expande con CSS */
-  @media (hover: hover) and (pointer: fine) {
-    .service-card:hover .service-card-details {
-      max-height: 600px;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .service-expand-btn {
-      display: none;
-    }
-  }
-
-  /* Táctil / móvil: JS añade .is-expanded */
+  /* El mismo control explícito funciona con ratón, teclado y pantalla táctil. */
   .service-card.is-expanded .service-card-details {
     max-height: 600px;
     opacity: 1;
@@ -1442,7 +1486,8 @@
     align-items: center;
     gap: 0.375rem;
     margin-top: 1rem;
-    padding: 0;
+    min-height: 2.75rem;
+    padding: 0.5rem 0;
     background: transparent;
     border: none;
     color: var(--color-azure-glow);

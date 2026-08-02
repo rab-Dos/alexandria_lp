@@ -35,33 +35,39 @@
     <div class="pricing-tabs" role="tablist" aria-label="Categorías de paquetes">
 
       <button
+        type="button"
         role="tab"
         id="ptab-ti"
         class="pricing-tab-btn is-active"
         aria-selected="true"
         aria-controls="ppanel-ti"
+        tabindex="0"
       >
         <span class="tab-name">Estabilidad Operativa</span>
         <span class="tab-sub">Planes de Soporte TI</span>
       </button>
 
       <button
+        type="button"
         role="tab"
         id="ptab-web"
         class="pricing-tab-btn"
         aria-selected="false"
         aria-controls="ppanel-web"
+        tabindex="-1"
       >
         <span class="tab-name">Presencia Digital</span>
         <span class="tab-sub">Paquetes Web</span>
       </button>
 
       <button
+        type="button"
         role="tab"
         id="ptab-corp"
         class="pricing-tab-btn"
         aria-selected="false"
         aria-controls="ppanel-corp"
+        tabindex="-1"
       >
         <span class="tab-name">Ingeniería Avanzada</span>
         <span class="tab-sub">Soluciones Corporativas</span>
@@ -77,6 +83,7 @@
       role="tabpanel"
       aria-labelledby="ptab-ti"
       class="pricing-panel is-active"
+      tabindex="0"
     >
 
       <p class="panel-intro">
@@ -173,6 +180,7 @@
         <h3 class="compare-title">Comparativa de planes</h3>
         <div class="compare-scroll" role="region" aria-label="Tabla comparativa de planes" tabindex="0">
           <table class="compare-table">
+            <caption class="visually-hidden">Comparación de características y precios de los planes de soporte TI</caption>
             <thead>
               <tr>
                 <th scope="col" class="compare-feature-col">Característica</th>
@@ -183,49 +191,49 @@
             </thead>
             <tbody>
               <tr>
-                <td>Soporte Básico (Windows / Office / Correo)</td>
-                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
-                <td class="col-featured"><span class="ci ci--yes" aria-label="Incluido"></span></td>
-                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
+                <th scope="row">Soporte Básico (Windows / Office / Correo)</th>
+                <td><span class="ci ci--yes" role="img" aria-label="Incluido"></span></td>
+                <td class="col-featured"><span class="ci ci--yes" role="img" aria-label="Incluido"></span></td>
+                <td><span class="ci ci--yes" role="img" aria-label="Incluido"></span></td>
               </tr>
               <tr>
-                <td>Soporte Técnico ASPEL y POS</td>
-                <td><span class="ci ci--no" aria-label="No incluido"></span></td>
-                <td class="col-featured"><span class="ci ci--yes" aria-label="Incluido"></span></td>
-                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
+                <th scope="row">Soporte Técnico ASPEL y POS</th>
+                <td><span class="ci ci--no" role="img" aria-label="No incluido"></span></td>
+                <td class="col-featured"><span class="ci ci--yes" role="img" aria-label="Incluido"></span></td>
+                <td><span class="ci ci--yes" role="img" aria-label="Incluido"></span></td>
               </tr>
               <tr>
-                <td>Ciberseguridad &amp; Antivirus</td>
+                <th scope="row">Ciberseguridad &amp; Antivirus</th>
                 <td><span class="ci-text">Básico</span></td>
                 <td class="col-featured"><span class="ci-text">Avanzado</span></td>
                 <td><span class="ci-text">Total</span></td>
               </tr>
               <tr>
-                <td>Gestión de Red Wi-Fi / LAN</td>
+                <th scope="row">Gestión de Red Wi-Fi / LAN</th>
                 <td><span class="ci-text">Básica</span></td>
                 <td class="col-featured"><span class="ci-text">Optimizada</span></td>
                 <td><span class="ci-text">Avanzada</span></td>
               </tr>
               <tr>
-                <td>Visitas en Sitio (Mensuales)</td>
+                <th scope="row">Visitas en Sitio (Mensuales)</th>
                 <td><span class="ci-text ci-text--muted">Costo Preferencial</span></td>
                 <td class="col-featured"><span class="ci-text">2 incluidas</span></td>
                 <td><span class="ci-text">4 incluidas</span></td>
               </tr>
               <tr>
-                <td>Mantenimiento Físico</td>
+                <th scope="row">Mantenimiento Físico</th>
                 <td><span class="ci-text ci-text--muted">Costo Preferencial</span></td>
                 <td class="col-featured"><span class="ci-text">Trimestral</span></td>
                 <td><span class="ci-text">Bimestral</span></td>
               </tr>
               <tr>
-                <td>Soporte 24/7 y Backups Cloud</td>
-                <td><span class="ci ci--no" aria-label="No incluido"></span></td>
-                <td class="col-featured"><span class="ci ci--no" aria-label="No incluido"></span></td>
-                <td><span class="ci ci--yes" aria-label="Incluido"></span></td>
+                <th scope="row">Soporte 24/7 y Backups Cloud</th>
+                <td><span class="ci ci--no" role="img" aria-label="No incluido"></span></td>
+                <td class="col-featured"><span class="ci ci--no" role="img" aria-label="No incluido"></span></td>
+                <td><span class="ci ci--yes" role="img" aria-label="Incluido"></span></td>
               </tr>
               <tr class="compare-price-row">
-                <td>Inversión Mensual por Equipo</td>
+                <th scope="row">Inversión Mensual por Equipo</th>
                 <td><strong>$550</strong></td>
                 <td class="col-featured"><strong>$850</strong></td>
                 <td><strong>$1,350</strong></td>
@@ -277,6 +285,8 @@
       role="tabpanel"
       aria-labelledby="ptab-web"
       class="pricing-panel"
+      tabindex="0"
+      hidden
     >
 
       <p class="panel-intro">
@@ -435,6 +445,8 @@
       role="tabpanel"
       aria-labelledby="ptab-corp"
       class="pricing-panel"
+      tabindex="0"
+      hidden
     >
 
       <!-- Encabezado ejecutivo -->
@@ -550,21 +562,42 @@
 
   ptabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      ptabs.forEach(t => { t.setAttribute('aria-selected', 'false'); t.classList.remove('is-active'); });
+      ptabs.forEach(t => {
+        t.setAttribute('aria-selected', 'false');
+        t.setAttribute('tabindex', '-1');
+        t.classList.remove('is-active');
+      });
       ppanels.forEach(p => {
         p.classList.remove('is-active');
+        p.hidden = true;
         // Remueve la animación para que se pueda relanzar
         p.style.animation = 'none';
       });
       tab.setAttribute('aria-selected', 'true');
+      tab.setAttribute('tabindex', '0');
       tab.classList.add('is-active');
       const target = document.getElementById(tab.getAttribute('aria-controls')!);
       if (target) {
+        target.hidden = false;
         target.classList.add('is-active');
         // Forzar reflow para que la animación se relance
         void target.offsetWidth;
         target.style.animation = '';
       }
+    });
+
+    tab.addEventListener('keydown', (event) => {
+      const currentIndex = Array.from(ptabs).indexOf(tab);
+      let nextIndex: number | undefined;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % ptabs.length;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + ptabs.length) % ptabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = ptabs.length - 1;
+      if (nextIndex === undefined) return;
+      event.preventDefault();
+      const nextTab = ptabs[nextIndex];
+      nextTab.click();
+      nextTab.focus();
     });
   });
 </script>
@@ -651,7 +684,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
   transition: color 200ms ease;
 }
 
@@ -685,7 +718,7 @@
 .tab-sub {
   font-size: 12px;
   font-weight: 400;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -814,7 +847,7 @@
 
 .plan-unit {
   font-size: 12px;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
 }
 
 /* Plan description */
@@ -866,7 +899,7 @@
 }
 
 .feat-no {
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
   text-decoration: line-through;
   text-decoration-color: rgba(106, 107, 108, 0.5);
 }
@@ -905,7 +938,7 @@
 }
 
 .plan-cta--ghost:hover {
-  border-color: var(--color-slate-300, #6a6b6c);
+  border-color: var(--color-slate-300, #858687);
   color: var(--color-snow, #fff);
 }
 
@@ -956,7 +989,7 @@
 
 .compare-table th.compare-feature-col {
   text-align: left;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
 }
 
 .compare-table tbody tr {
@@ -980,10 +1013,15 @@
   vertical-align: middle;
 }
 
-.compare-table td:first-child {
+.compare-table tbody th[scope="row"] {
+  padding: 14px 20px;
   text-align: left;
+  vertical-align: middle;
   color: var(--color-snow, #fff);
+  font-size: inherit;
   font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 /* Featured column highlight */
@@ -1036,12 +1074,12 @@
 }
 
 .ci-text--muted {
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
   font-size: 11px;
 }
 
 /* Price row */
-.compare-price-row td {
+.compare-price-row > * {
   font-size: 15px;
   font-weight: 700;
   color: var(--color-snow, #fff);
@@ -1050,18 +1088,18 @@
   padding-bottom: 18px;
 }
 
-.compare-price-row td:first-child {
+.compare-price-row th[scope="row"] {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
 }
 
 .compare-legal {
   font-size: 11px;
   line-height: 1.6;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
   margin-top: 12px;
   padding: 0 4px;
 }
@@ -1158,7 +1196,7 @@
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
   text-transform: uppercase;
 }
 
@@ -1518,7 +1556,7 @@
 
 .corp-cta-note {
   font-size: 12px;
-  color: var(--color-slate-300, #6a6b6c);
+  color: var(--color-slate-300, #858687);
   margin: 12px 0 0;
   letter-spacing: 0.03em;
 }

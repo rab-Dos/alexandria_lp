@@ -18,7 +18,7 @@ const navLinks = [
   <!-- ── Barra principal ──────────────────────────────────── -->
   <div class="nav-pill">
 
-    <a href="#" aria-label="Alexandria Studio — Ir al inicio" class="logo">
+    <a href="#inicio" aria-label="Alexandria Studio — Ir al inicio" class="logo">
       <img
         src="/Alexandria_alternativo.svg"
         alt=""
@@ -65,9 +65,8 @@ const navLinks = [
     id="mobile-menu"
     class="mobile-menu"
     aria-hidden="true"
-    aria-label="Menú de navegación móvil"
   >
-    <nav>
+    <nav aria-label="Navegación móvil">
       <ul>
         {navLinks.map(({ label, href }) => (
           <li>
@@ -92,6 +91,7 @@ const navLinks = [
     menu.classList.add('is-closing');
     menu.classList.remove('is-open');
     btn?.setAttribute('aria-expanded', 'false');
+    btn?.setAttribute('aria-label', 'Abrir menú de navegación');
     menu.setAttribute('aria-hidden', 'true');
     btn?.classList.remove('is-active');
     // Quitar is-closing una vez termina la animación de salida
@@ -106,6 +106,7 @@ const navLinks = [
     } else {
       menu!.classList.add('is-open');
       btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Cerrar menú de navegación');
       menu!.setAttribute('aria-hidden', 'false');
       btn.classList.add('is-active');
     }
@@ -114,5 +115,11 @@ const navLinks = [
   // Cerrar el menú con fadeout al hacer clic en un enlace
   menu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => closeMenu());
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !menu?.classList.contains('is-open')) return;
+    closeMenu();
+    btn?.focus();
   });
 </script>

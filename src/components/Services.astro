@@ -134,11 +134,13 @@ const engineering = [
     <div class="services-tabs" role="tablist" aria-label="Pilares de servicio">
 
       <button
+        type="button"
         role="tab"
         id="tab-stability"
         class="services-tab-btn is-active"
         aria-selected="true"
         aria-controls="panel-stability"
+        tabindex="0"
       >
         <span class="tab-eyebrow">Pilar 1</span>
         <span class="tab-name">Estabilidad Operativa</span>
@@ -146,11 +148,13 @@ const engineering = [
       </button>
 
       <button
+        type="button"
         role="tab"
         id="tab-engineering"
         class="services-tab-btn"
         aria-selected="false"
         aria-controls="panel-engineering"
+        tabindex="-1"
       >
         <span class="tab-eyebrow">Pilar 2</span>
         <span class="tab-name">Ingeniería y Evolución</span>
@@ -165,6 +169,7 @@ const engineering = [
       role="tabpanel"
       aria-labelledby="tab-stability"
       class="services-panel is-active"
+      tabindex="0"
     >
       <div class="services-grid" role="list">
         {stability.map((s) => (
@@ -185,6 +190,8 @@ const engineering = [
       role="tabpanel"
       aria-labelledby="tab-engineering"
       class="services-panel"
+      tabindex="0"
+      hidden
     >
       <div class="services-grid services-grid--centered" role="list">
         {engineering.map((s) => (
@@ -213,22 +220,50 @@ const engineering = [
   function activateTab(tab: HTMLButtonElement): void {
     // Cerrar todas las tarjetas abiertas antes de cambiar de panel
     collapseAllCards();
-    tabs.forEach(t => { t.setAttribute('aria-selected', 'false'); t.classList.remove('is-active'); });
-    panels.forEach(p => p.classList.remove('is-active'));
+    tabs.forEach(t => {
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+      t.classList.remove('is-active');
+    });
+    panels.forEach(p => {
+      p.classList.remove('is-active');
+      p.hidden = true;
+    });
     tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
     tab.classList.add('is-active');
     const target = document.getElementById(tab.getAttribute('aria-controls')!);
-    target?.classList.add('is-active');
+    if (target) {
+      target.hidden = false;
+      target.classList.add('is-active');
+    }
   }
 
-  tabs.forEach(tab => tab.addEventListener('click', () => activateTab(tab)));
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', (event) => {
+      let nextIndex: number | undefined;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = tabs.length - 1;
+      if (nextIndex === undefined) return;
+      event.preventDefault();
+      const nextTab = tabs[nextIndex];
+      activateTab(nextTab);
+      nextTab.focus();
+    });
+  });
 
   // ── Expand/collapse de tarjetas — mutuamente excluyentes (táctil / móvil) ──
   function collapseCard(card: HTMLElement): void {
     card.classList.remove('is-expanded');
     const btn = card.querySelector<HTMLButtonElement>('.service-expand-btn');
+    const details = card.querySelector<HTMLElement>('.service-card-details');
     if (!btn) return;
     btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', `Ver detalles: ${btn.dataset.serviceTitle ?? 'servicio'}`);
+    if (details) details.hidden = true;
     const label = btn.querySelector('.expand-label');
     if (label) label.textContent = 'Saber más';
   }
@@ -245,8 +280,11 @@ const engineering = [
       });
 
       if (willExpand) {
+        const details = card.querySelector<HTMLElement>('.service-card-details');
+        if (details) details.hidden = false;
         card.classList.add('is-expanded');
         btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', `Ocultar detalles: ${btn.dataset.serviceTitle ?? 'servicio'}`);
         const label = btn.querySelector('.expand-label');
         if (label) label.textContent = 'Ver menos';
       } else {
@@ -262,7 +300,10 @@ const engineering = [
       e.preventDefault();
       const targetId = link.dataset.targetTab!;
       const tab = document.querySelector<HTMLButtonElement>(`[aria-controls="${targetId}"]`);
-      if (tab) activateTab(tab);
+      if (tab) {
+        activateTab(tab);
+        tab.focus();
+      }
       document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });

@@ -3,7 +3,7 @@
  * components/ServiceCard.astro
  * Tarjeta de servicio minimalista.
  * Muestra: icono + título + descripción (una línea).
- * Detalle (features + cross-sell): visible en hover desktop / toggle en móvil.
+ * Detalle (features + cross-sell): controlado por un botón accesible.
  */
 
 interface CrossSell {
@@ -21,6 +21,12 @@ interface Props {
 }
 
 const { icon, title, description, features, crossSell } = Astro.props;
+const detailsId = `service-details-${title
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')}`;
 ---
 
 <article class="service-card" role="listitem">
@@ -35,8 +41,8 @@ const { icon, title, description, features, crossSell } = Astro.props;
   <!-- Divisor sutil: invisible en estado base, visible al expandir -->
   <hr class="service-divider" aria-hidden="true" />
 
-  <!-- Detalle: visible en hover (desktop) o al expandir (móvil) -->
-  <div class="service-card-details" aria-hidden="true">
+  <!-- Detalle: se incorpora al árbol accesible únicamente al expandir -->
+  <div id={detailsId} class="service-card-details" hidden>
     <ul class="service-features">
       {features.map((f) => <li>{f}</li>)}
     </ul>
@@ -56,12 +62,14 @@ const { icon, title, description, features, crossSell } = Astro.props;
     )}
   </div>
 
-  <!-- Botón expand (visible solo en táctil / sin hover) -->
+  <!-- Botón expand: misma interacción con ratón, teclado y pantalla táctil -->
   <button
     type="button"
     class="service-expand-btn"
     aria-expanded="false"
+    aria-controls={detailsId}
     aria-label={`Ver detalles: ${title}`}
+    data-service-title={title}
   >
     <span class="expand-label">Saber más</span>
     <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
