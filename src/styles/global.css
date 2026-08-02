@@ -1280,6 +1280,7 @@
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    align-items: start;
     gap: 1.25rem;
   }
 
@@ -1294,6 +1295,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    align-self: start;
     padding: 1.625rem;
     background-color: var(--color-deep-charcoal);
     border: 1px solid var(--color-graphite-500);
