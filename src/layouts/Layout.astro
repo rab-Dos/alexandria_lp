@@ -23,8 +23,13 @@ const {
   title,
   description,
   canonicalURL,
-  ogImage = '/images/og-default.webp', // imagen OG por defecto
+  ogImage = '/Alexandria.png',
 } = Astro.props;
+
+// OG image must be an absolute URL for social crawlers
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : new URL(ogImage, Astro.site).toString();
 
 const siteName = 'Alexandria Studio';
 ---
@@ -69,7 +74,7 @@ const siteName = 'Alexandria Studio';
     <meta property="og:site_name"   content={siteName} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image"       content={ogImageAbsolute} />
     <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale"      content="es_MX" />
@@ -78,7 +83,7 @@ const siteName = 'Alexandria Studio';
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image"       content={ogImage} />
+    <meta name="twitter:image"       content={ogImageAbsolute} />
     <!-- <meta name="twitter:site" content="@AlexandriaStudio" /> -->
 
     <!-- ─── Rendimiento: Preconnect & DNS-Prefetch para CDNs externos ─────── -->
