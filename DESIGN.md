@@ -31,17 +31,18 @@ Alexandria lives in near-total darkness — a #040506 void where UI surfaces eme
 ## Tokens — Typography
 
 ### Inter — Universal UI font covering everything from 11px badge labels to 64px hero headlines. The negative tracking at display sizes (-0.11em at 56px) is the anti-convention choice — most launcher/productivity tools use neutral tracking, but Alexandria's headlines contract inward, creating pressure and density. Feature settings 'ss03' (alternate 'a') distinguish it from default Inter. At small sizes (11–13px), tracking goes strongly positive (up to +0.073em) making metadata scannable at tiny scales. · `--font-inter`
-- **Substitute:** Inter (Google Fonts) — identical; this is the Google-hosted version
-- **Weights:** 400, 500, 600
+- **Source:** Self-hosted variable WOFF2 at `/fonts/Inter-VariableFont_opsz,wght.woff2`; no Google Fonts dependency
+- **Weights:** 400–800 normal; 400 italic
 - **Sizes:** 11px, 12px, 13px, 14px, 16px, 18px, 20px, 22px, 24px, 32px, 56px, 64px
 - **Line height:** 1.0–1.71 depending on size (tighter at display, looser at body)
 - **Letter spacing:** -0.112px at 56px (≈-0.002em), up to +4.088px at 56px positive range; small sizes use +0.004em to +0.073em
 - **OpenType features:** `"calt", "kern", "liga", "ss03"; alternately "liga" 0, "ss02", "ss08"`
 - **Role:** Universal UI font covering everything from 11px badge labels to 64px hero headlines.
 
-### GeistMono — Monospaced font for version strings (v1.104.14), code snippets, homebrew install commands, and keyboard shortcut labels. Weight 300 at 10px for ultra-minimal metadata; weight 500 at 14px for readable code. Positive tracking (+0.017em to +0.05em) keeps characters from colliding at small sizes. · `--font-geistmono`
+### GeistMono — Monospaced font for version strings, code snippets, legal metadata, and keyboard shortcut labels. The current site uses weight 400; positive tracking keeps characters from colliding at small sizes. · `--font-geistmono`
+- **Source:** Self-hosted variable WOFF2 at `/fonts/GeistMono-VariableFont_wght.woff2`
 - **Substitute:** JetBrains Mono or IBM Plex Mono
-- **Weights:** 300, 400, 500
+- **Weights:** 400 in the current implementation; the source file supports the 100–900 variable range
 - **Sizes:** 10px, 12px, 14px
 - **Line height:** 1.0–1.6
 - **Letter spacing:** +0.017em to +0.05em across all sizes
@@ -281,6 +282,12 @@ Max-width ~1200px centered on wide viewports, but hero section is full-bleed dar
 ## Animation Philosophy
 
 Transitions default to `ease` (not ease-in-out) at 200ms for micro-interactions (color, opacity, box-shadow) and 400ms for transforms. The custom easing `cubic-bezier(0.23, 1, 0.32, 1)` (outQuint) is used for entrances — fast attack, long settle — giving UI elements a snap-in character rather than a float-in. Keyboard key elements animate `--key-bg-start-color` and `--key-bg-end-color` CSS custom properties at 200ms, enabling per-key gradient transitions without class toggling. Named animations `page_fade-in-up` use upward translate + opacity for section reveals. Motion is expressive but never decorative-slow — nothing exceeds 700ms.
+
+The animated Hero mesh and footer globe are signature identity elements and are the deliberate exception to the 700ms duration guideline. Their premium character must be preserved, but their lifecycle is performance-bound: both render at a maximum of 30 FPS, pause whenever they leave the viewport or the document becomes hidden, and never initialize for `prefers-reduced-motion: reduce`. The Hero reduces line density, sample density, and internal canvas resolution below 768px without replacing the artwork. Three.js and the footer scene are requested only when the globe is within 400px of the viewport; the WebGL composition must not be replaced by a static fallback.
+
+Decorative CSS effects use the shared `data-animate-when-visible` contract. A single page-level `IntersectionObserver` adds `is-in-viewport`; animations must remain paused while that class is absent. Long sections below the Hero use `content-visibility: auto` with an intrinsic-size fallback so offscreen layout and painting can be deferred.
+
+The continuity heatmap is decorative and must remain an inline SVG composed from a maximum of four combined paths rather than one DOM element per day. It stays inside an `aria-hidden="true"` visual region and does not require client-side JavaScript.
 
 ## Accessibility Requirements — WCAG 2.2 AA
 

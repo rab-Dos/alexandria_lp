@@ -6,6 +6,36 @@
  *  2. El logotipo como manifiesto de identidad
  *  3. Misión, Visión y Valores
  */
+
+const HEATMAP_DAYS = 90;
+const HEATMAP_ROWS = 7;
+const CELL_SIZE = 12;
+const CELL_GAP = 4;
+const CELL_STEP = CELL_SIZE + CELL_GAP;
+const HEATMAP_COLUMNS = Math.ceil(HEATMAP_DAYS / HEATMAP_ROWS);
+const HEATMAP_WIDTH = HEATMAP_COLUMNS * CELL_STEP - CELL_GAP;
+const HEATMAP_HEIGHT = HEATMAP_ROWS * CELL_STEP - CELL_GAP;
+
+const roundedCellPath = (x: number, y: number): string =>
+  `M${x + 2} ${y}h${CELL_SIZE - 4}q2 0 2 2v${CELL_SIZE - 4}q0 2-2 2h-${CELL_SIZE - 4}q-2 0-2-2v-${CELL_SIZE - 4}q0-2 2-2Z`;
+
+const heatmapPaths = [0, 1, 2, 3].map((level) =>
+  Array.from({ length: HEATMAP_DAYS }, (_, index) => index)
+    .filter((index) => {
+      const cellLevel = index === 17 || index === 64
+        ? 1
+        : index % 11 === 0 || index % 17 === 0
+          ? 2
+          : 3;
+      return cellLevel === level;
+    })
+    .map((index) => {
+      const x = Math.floor(index / HEATMAP_ROWS) * CELL_STEP;
+      const y = (index % HEATMAP_ROWS) * CELL_STEP;
+      return roundedCellPath(x, y);
+    })
+    .join(' '),
+);
 ---
 
 <section
@@ -42,7 +72,7 @@
 
         <!-- Columna derecha: tarjeta de métricas animada -->
         <div class="about-story-media" aria-hidden="true">
-          <div class="metrics-wrapper">
+          <div class="metrics-wrapper" data-animate-when-visible>
             <div class="metrics-card">
 
               <!-- Encabezado: título e insignia de estado -->
@@ -75,7 +105,16 @@
                   <span>Actividad de Servidores (Últimos 90 días)</span>
                   <span>Hoy</span>
                 </div>
-                <div class="heatmap-grid" id="heatmapContainer"></div>
+                <svg
+                  class="heatmap-svg"
+                  viewBox={`0 0 ${HEATMAP_WIDTH} ${HEATMAP_HEIGHT}`}
+                  preserveAspectRatio="xMidYMid meet"
+                  focusable="false"
+                >
+                  <path class="heatmap-level-1" d={heatmapPaths[1]} />
+                  <path class="heatmap-level-2" d={heatmapPaths[2]} />
+                  <path class="heatmap-level-3" d={heatmapPaths[3]} />
+                </svg>
                 <div class="heatmap-legend">
                   <span>Menos</span>
                   <div class="heatmap-cell level-0"></div>
@@ -218,49 +257,3 @@
 
   </div>
 </section>
-
-<script>
-  // ── Heatmap de actividad de servidores (Métricas de Continuidad) ──
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('heatmapContainer');
-    if (!container) return;
-
-    const TOTAL_DAYS = 90;
-    const ROWS       = 7; // días de la semana
-
-    // Genera datos de uptime simulados (mayoría nivel 3 — operación óptima)
-    function generateData(): number[] {
-      return Array.from({ length: TOTAL_DAYS }, () => {
-        const r = Math.random();
-        if (r > 0.98) return 1; // mantenimiento puntual
-        if (r > 0.90) return 2; // operación normal
-        return 3;               // operación óptima
-      });
-    }
-
-    const data     = generateData();
-    const fragment = document.createDocumentFragment();
-
-    data.forEach((level, index) => {
-      const cell = document.createElement('div');
-      cell.classList.add('heatmap-cell', `level-${level}`);
-
-      // Tooltip nativo con fecha y estado
-      const date = new Date();
-      date.setDate(date.getDate() - (TOTAL_DAYS - 1 - index));
-      const dateStr    = date.toLocaleDateString('es-MX', { month: 'short', day: 'numeric' });
-      const statusText = level === 1 ? 'Mantenimiento preventivo'
-                       : level === 2 ? 'Operación normal'
-                       :               'Operación óptima';
-      cell.setAttribute('title', `${dateStr}: ${statusText}`);
-
-      // Animación de entrada escalonada
-      cell.style.opacity   = '0';
-      cell.style.animation = `fadeInUp 0.3s ease forwards ${index * 0.005 + 0.4}s`;
-
-      fragment.appendChild(cell);
-    });
-
-    container.appendChild(fragment);
-  });
-</script>

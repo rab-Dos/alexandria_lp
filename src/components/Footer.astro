@@ -13,16 +13,12 @@ const legalLinks = [
 ---
 
 <footer class="site-footer" role="contentinfo">
-
-  <!-- ── Contenido principal (marca, nav, servicios) ── -->
   <div class="container">
     <div class="footer-layout">
-
-      <!-- Columna 1: Marca y tagline -->
       <div class="footer-brand">
         <a href="/" aria-label="Alexandria Studio — Inicio">
           <img
-            src="/images/logo-white.svg"
+            src="/Alexandria_alternativo.svg"
             alt="Alexandria Studio"
             width="140"
             height="32"
@@ -34,7 +30,6 @@ const legalLinks = [
         </p>
       </div>
 
-      <!-- Columna 2: Mapa del sitio rápido -->
       <nav aria-label="Mapa del sitio">
         <h3 class="footer-nav-title">Navegación</h3>
         <ul>
@@ -46,7 +41,6 @@ const legalLinks = [
         </ul>
       </nav>
 
-      <!-- Columna 3: Servicios agrupados por pilar -->
       <div class="footer-services">
         <h3 class="footer-nav-title">Servicios</h3>
         <div class="footer-services-grid">
@@ -70,16 +64,13 @@ const legalLinks = [
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ── Globo 3D decorativo (full-width) ── -->
   <div class="footer-globe" aria-hidden="true">
     <div id="footer-globe-canvas"></div>
   </div>
 
-  <!-- ── Barra inferior: copyright y enlaces legales ── -->
   <div class="container">
     <div class="footer-bottom">
       <small>
@@ -95,175 +86,29 @@ const legalLinks = [
       </nav>
     </div>
   </div>
-
 </footer>
 
-<script is:inline>
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+<script>
+  const globeContainer = document.getElementById('footer-globe-canvas');
 
-  /* Carga Three.js desde CDN y luego inicializa el globo */
-  const s = document.createElement('script');
-  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-  s.onload = initFooterGlobe;
-  document.head.appendChild(s);
+  if (globeContainer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let requested = false;
+    const loadGlobe = async (): Promise<void> => {
+      if (requested) return;
+      requested = true;
+      const { initFooterGlobe } = await import('../scripts/footer-globe');
+      await initFooterGlobe(globeContainer);
+    };
 
-  function initFooterGlobe() {
-    const container = document.getElementById('footer-globe-canvas');
-    if (!container || typeof THREE === 'undefined') return;
-
-    let scene, camera, renderer, globeGroup, textRing;
-    let mouseX = 0, mouseY = 0;
-
-    /* ── Escena ── */
-    scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x040506, 0.025);
-
-    /* ── Cámara ── */
-    const w = container.offsetWidth;
-    const h = container.offsetHeight;
-    camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000);
-    camera.position.z = 16;
-
-    /* ── Renderer ── */
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(w, h);
-    container.appendChild(renderer.domElement);
-
-    /* ── Grupo del globo ── */
-    globeGroup = new THREE.Group();
-    globeGroup.position.y = -14;
-    globeGroup.rotation.z = 0.4;
-    scene.add(globeGroup);
-
-    /* ── Geometría de icosaedro ── */
-    const radius = 12;
-    const geometry = new THREE.IcosahedronGeometry(radius, 2);
-    const positions = geometry.attributes.position.array;
-    const vertexCount = positions.length / 3;
-
-    /* Textura de nodo (círculo difuso) */
-    const nc = document.createElement('canvas');
-    nc.width = 32; nc.height = 32;
-    const nCtx = nc.getContext('2d');
-    const grad = nCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
-    grad.addColorStop(0,   'rgba(255,255,255,1)');
-    grad.addColorStop(0.2, 'rgba(0,136,255,0.8)');
-    grad.addColorStop(0.5, 'rgba(0,91,181,0.2)');
-    grad.addColorStop(1,   'rgba(0,0,0,0)');
-    nCtx.fillStyle = grad;
-    nCtx.fillRect(0, 0, 32, 32);
-    const nodeTex = new THREE.CanvasTexture(nc);
-
-    globeGroup.add(new THREE.Points(
-      geometry,
-      new THREE.PointsMaterial({
-        size: 0.8, map: nodeTex, transparent: true,
-        blending: THREE.AdditiveBlending, depthWrite: false, color: 0xffffff
-      })
-    ));
-
-    /* ── Líneas de conexión ── */
-    const linePositions = [];
-    const threshold = 6.5;
-    for (let i = 0; i < vertexCount; i++) {
-      for (let j = i + 1; j < vertexCount; j++) {
-        const dx = positions[i*3]   - positions[j*3];
-        const dy = positions[i*3+1] - positions[j*3+1];
-        const dz = positions[i*3+2] - positions[j*3+2];
-        if (Math.sqrt(dx*dx + dy*dy + dz*dz) < threshold) {
-          linePositions.push(
-            positions[i*3], positions[i*3+1], positions[i*3+2],
-            positions[j*3], positions[j*3+1], positions[j*3+2]
-          );
-        }
-      }
-    }
-    const lineGeo = new THREE.BufferGeometry();
-    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-    globeGroup.add(new THREE.LineSegments(
-      lineGeo,
-      new THREE.LineBasicMaterial({
-        color: 0x005BB5, transparent: true, opacity: 0.28,
-        blending: THREE.AdditiveBlending
-      })
-    ));
-
-    /* ── Cinta de texto orbital ── */
-    const tc = document.createElement('canvas');
-    tc.width = 2560; tc.height = 128;
-    const tCtx = tc.getContext('2d');
-    tCtx.fillStyle = 'rgba(0,0,0,0)';
-    tCtx.fillRect(0, 0, tc.width, tc.height);
-    tCtx.font = '600 55px Inter, monospace';
-    tCtx.fillStyle = '#38bdf8';
-    tCtx.textAlign = 'center';
-    tCtx.textBaseline = 'middle';
-    tCtx.shadowColor = '#0284c7';
-    tCtx.shadowBlur = 18;
-    const ribbonText = '[ { < A > } ]';
-    for (let i = 0; i < 6; i++) {
-      tCtx.fillText(ribbonText, (i * 2560/6) + (2560/12), 64);
-    }
-    const textTex = new THREE.CanvasTexture(tc);
-    textTex.wrapS = THREE.RepeatWrapping;
-
-    textRing = new THREE.Mesh(
-      new THREE.CylinderGeometry(13.5, 13.5, 3, 64, 1, true),
-      new THREE.MeshBasicMaterial({
-        map: textTex, transparent: true, opacity: 0.95,
-        blending: THREE.AdditiveBlending, side: THREE.DoubleSide, depthWrite: false
-      })
-    );
-
-    const orbitGroup = new THREE.Group();
-    orbitGroup.position.y = globeGroup.position.y;
-    orbitGroup.rotation.x = -0.65;
-    orbitGroup.rotation.z = 0.15;
-    orbitGroup.add(textRing);
-    scene.add(orbitGroup);
-
-    /* ── Parallax con mouse ── */
-    container.addEventListener('mousemove', (e) => {
-      const r = container.getBoundingClientRect();
-      mouseX = ((e.clientX - r.left) / r.width  - 0.5) * 3;
-      mouseY = ((e.clientY - r.top)  / r.height - 0.5) * 3;
-    });
-
-    /* ── Responsividad ── */
-    window.addEventListener('resize', () => {
-      const nw = container.offsetWidth;
-      const nh = container.offsetHeight;
-      camera.aspect = nw / nh;
-      camera.updateProjectionMatrix();
-      renderer.setSize(nw, nh);
-    });
-
-    /* ── Loop — pausar cuando no está en pantalla ── */
-    let rafId = null;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (!rafId) loop();
-        } else {
-          cancelAnimationFrame(rafId);
-          rafId = null;
-        }
-      });
-    }, { threshold: 0.01 });
-    observer.observe(container);
-
-    function loop() {
-      rafId = requestAnimationFrame(loop);
-      globeGroup.rotation.y += 0.001;
-      globeGroup.rotation.x += 0.0005;
-      if (textRing) textRing.rotation.y += 0.003;
-      camera.position.x += (mouseX  - camera.position.x) * 0.05;
-      camera.position.y += (-mouseY - camera.position.y) * 0.05;
-      camera.lookAt(0, -4, 0);
-      renderer.render(scene, camera);
+    if ('IntersectionObserver' in window) {
+      const loadObserver = new IntersectionObserver(([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        void loadGlobe();
+      }, { rootMargin: '400px 0px', threshold: 0 });
+      loadObserver.observe(globeContainer);
+    } else {
+      void loadGlobe();
     }
   }
-})();
 </script>

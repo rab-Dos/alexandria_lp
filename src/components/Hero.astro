@@ -50,20 +50,29 @@
 
 <script>
   // ── Animación de fondo del Hero: malla de olas fluidas (estilo Raycast) ──
-  const canvas  = document.getElementById('hero-canvas') as HTMLCanvasElement;
-  const ctx     = canvas.getContext('2d')!;
-  const section = canvas.closest('.hero-section') as HTMLElement;
+  const canvas  = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+  const ctx     = canvas?.getContext('2d');
+  const section = canvas?.closest('.hero-section') as HTMLElement | null;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (prefersReducedMotion) {
+  if (!canvas || !ctx || !section) {
+    // El componente no está presente en esta página.
+  } else if (prefersReducedMotion) {
     canvas.hidden = true;
   } else {
 
   let width: number, height: number;
   let time = 0;
   let waveGradient: CanvasGradient;
+  let rafId: number | null = null;
+  let lastFrameTime = 0;
+  let isHeroVisible = false;
 
-  const NUM_LINES        = 25;
+  const isCompactViewport = window.matchMedia('(max-width: 767px)').matches;
+  const NUM_LINES        = isCompactViewport ? 16 : 25;
+  const SAMPLE_STEP      = isCompactViewport ? 28 : 20;
+  const RENDER_SCALE     = isCompactViewport ? 0.75 : 1;
+  const FRAME_INTERVAL   = 1000 / 30;
   const SCANNER_INTERVAL = 20_000; // ms entre barridos de luz
   const SCANNER_DURATION =  5_000; // ms que dura cada barrido
 
@@ -78,8 +87,10 @@
 
   function resizeCanvas(): void {
     const rect = section.getBoundingClientRect();
-    width  = canvas.width  = rect.width  || window.innerWidth;
-    height = canvas.height = rect.height || window.innerHeight;
+    const cssWidth  = rect.width  || window.innerWidth;
+    const cssHeight = rect.height || window.innerHeight;
+    width  = canvas.width  = Math.max(1, Math.round(cssWidth * RENDER_SCALE));
+    height = canvas.height = Math.max(1, Math.round(cssHeight * RENDER_SCALE));
 
     // Degradado horizontal usando la paleta Azure de la marca
     waveGradient = ctx.createLinearGradient(0, 0, width, 0);
@@ -114,7 +125,14 @@
       + Math.cos(x * 0.004 - time * 0.012 + i * 0.05) * 25;
   }
 
-  function animate(): void {
+  function animate(timestamp: number): void {
+    rafId = requestAnimationFrame(animate);
+
+    const elapsed = timestamp - lastFrameTime;
+    if (elapsed < FRAME_INTERVAL) return;
+    const frameScale = Math.min(elapsed / (1000 / 60), 2.5);
+    lastFrameTime = timestamp - (elapsed % FRAME_INTERVAL);
+
     // Fondo Void Black (#040506)
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = '#040506';
@@ -148,7 +166,7 @@
       ctx.beginPath();
       ctx.lineWidth   = 0.5 + norm * 2;
       ctx.strokeStyle = waveGradient;
-      for (let x = 0; x <= width; x += 20) {
+      for (let x = 0; x <= width; x += SAMPLE_STEP) {
         const y = getY(x, i, norm);
         x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
@@ -175,14 +193,39 @@
       }
       if (started) ctx.stroke();
       ctx.shadowBlur = 0;
-      pulse.x += pulse.speed;
+      pulse.x += pulse.speed * frameScale;
       if (pulse.x - pulse.length > width) energyPulses.splice(i, 1);
     }
 
-    time++;
-    requestAnimationFrame(animate);
+    time += frameScale;
   }
 
-  animate();
+  function shouldAnimate(): boolean {
+    return isHeroVisible && document.visibilityState === 'visible';
+  }
+
+  function startAnimation(): void {
+    if (rafId !== null || !shouldAnimate()) return;
+    lastFrameTime = performance.now() - FRAME_INTERVAL;
+    rafId = requestAnimationFrame(animate);
+  }
+
+  function stopAnimation(): void {
+    if (rafId === null) return;
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+
+  const visibilityObserver = new IntersectionObserver(([entry]) => {
+    isHeroVisible = entry.isIntersecting;
+    if (shouldAnimate()) startAnimation();
+    else stopAnimation();
+  }, { threshold: 0 });
+
+  visibilityObserver.observe(section);
+  document.addEventListener('visibilitychange', () => {
+    if (shouldAnimate()) startAnimation();
+    else stopAnimation();
+  });
   }
 </script>

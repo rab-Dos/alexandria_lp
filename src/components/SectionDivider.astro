@@ -2,7 +2,7 @@
 // SectionDivider.astro — separador animado entre secciones principales
 ---
 
-<div class="section-divider" aria-hidden="true">
+<div class="section-divider" aria-hidden="true" data-animate-when-visible>
   <div class="divider-glow"></div>
 </div>
 
@@ -65,15 +65,3 @@
     100% { background-position: -200% 0; opacity: 0; }
   }
 </style>
-
-<script is:inline>
-  (function () {
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add('is-visible');
-      }),
-      { threshold: 0.5 }
-    );
-    document.querySelectorAll('.section-divider').forEach((el) => observer.observe(el));
-  })();
-</script>
