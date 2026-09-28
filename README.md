@@ -174,4 +174,4 @@ La lista representa el objetivo de compatibilidad del proyecto; no existe actual
 
 ## Licencia
 
-Todos los derechos reservados. El sitio muestra automáticamente el año vigente en el footer.
+El código fuente de este repositorio se distribuye bajo los términos de la licencia MIT (consulta [LICENSE](LICENSE)). La marca Alexandria Studio, sus logotipos y los materiales de terceros conservan sus derechos y licencias aplicables.
